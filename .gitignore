@@ -1,0 +1,12 @@
+*.sty
+*.pdf
+*.xoj
+*.log
+*.aux
+figures/
+*.blg
+*.bbl
+*.dvi
+*.bst
+.gitignore
+*.swp
