@@ -5,7 +5,7 @@
 \usepackage{graphicx}
 \usepackage{amssymb,amsmath,bm}
 \usepackage{textcomp}
-
+\usepackage{verbatim}
 \def\vec#1{\ensuremath{\bm{{#1}}}}
 \def\mat#1{\vec{#1}}
 
@@ -58,11 +58,13 @@
   \section{Introduction}
 
 \section{Entropy-based segmentation of birdsong}
-The entropy of spectrograms of bird song recordings can be effectively used for distinguishing between background and bird vocalizations \cite{6625329}. Spectrogram of single bird song is generally sparse i.e. high power components acquire only a small portion of time-frequency bins and the background noise of spectrogram is relatively white. Hence  the entropy of sliding time frequency block over spectrogram is low when block contains a signal and is high when only background is covered. 
+This section describes how to calculate entropy from spectrogram and phase spectrum, also how to use entropy to identify bird vocalizations. The entropy of spectrograms of bird song recordings can be effectively used for distinguishing between background and bird vocalizations \cite{6625329}. Spectrogram of single bird song is generally sparse i.e. high power components acquire only a small portion of time-frequency bins and the background noise of spectrogram is relatively white. Hence  the entropy of sliding time frequency block over spectrogram is low when block contains a signal and is high when only background is present in that block. It is known that phase spectrum has more information than magnitude spectrum. So, phase spectrum can also be used to calculate entropy. Group delay functions from all pole models are used to calculate the phase spectrum. 
+
 \subsection{Entropy Calculation}
-The time-frequency block of time length \textbf{\textit{w}} and having F frequency bins ranging from \textbf{\textit{f1}} to  \textbf{\textit{fn}} is slided horizontally from beginning to the end of spectrogram. Entropy is calculated for each time-frequency block. \textbf{\textit{p(n,f)}} is power spectrum at time \textbf{\textit{n}} and frequency  \textbf{\textit{f}}.  The entropy is calculated using following equation:
+Entropy is calculated for each time-frequency block on power spectrum. This time-frequency block of time length \textbf{\textit{w}} and having F frequency bins ranging from \textbf{\textit{f1}} to  \textbf{\textit{fn}} is moved horizontally from beginning to the end of power spectrum. The frequency range is different for each target species. \textbf{\textit{p(n,f)}} is power spectrum at time \textbf{\textit{n}} and frequency  \textbf{\textit{f}}. The entropy is calculated using following equation:
 
 \hspace{1cm}
+
   $h_{k}=\sum_{n=kT+1}^{kT+w}\sum_{f=f1}^{fn}z(n,f) \ln z(n,f)$
 
  \hspace{1cm}
@@ -71,46 +73,125 @@ Here \textbf{\textit{T}} is time-frequency block shift and \textbf{\textit{z(n,f
 
 
 \hspace{1cm}
+
 $z(n,f)=\frac {p(n,f)}
 {\sum_{n=kT+1}^{kT+w}\sum_{f=f1}^{fn} p(n,f)}$
 
 \hspace{1cm}
 
+
 The entropy calculated from block is less susceptible to the bursts of background noise in comparison to the entropy calculated at each time instance. 
 
 
+\subsection{Whitening Spectrogram before Entropy Calculation}
+
+To identify the bird vocalizations using entropy, there should be a clear distinction between the entropy of background and call period. However this is not always the case in raw sound recordings. Depending on the interference level, entropy at a quiet period can even be higher than the entropy at a call period or bird call activity [1]. To overcome this problem, whole spectrogram or power spectrum is whitened using PCA  before calculating entropy. The entropy calculated from whitened spectrogram is almost constant for background but dips enough to mark the presence of bird vocalizations. Even low energy bird vocalizations can be detected accurately using this method. The missed detection rate is decreased if whitened spectrogram is used for entropy calculation. 
+
+To whiten the spectrogram (\textit{PS}), the covariance matrix of mean subtracted spectrogram is calculated. The Eigen values matrix (\textit{S}) and Eigen vectors matrix (\textit{U}) of this covariance matrix are calculated. The spectrogram matrix is whitened using the following equation:
+
+\hspace{1cm}
+
+$WhitePS=diag(\frac{1}{\sqrt{diag(S)+\epsilon}})*\textit{U'}*\textit{PS}$
+
+
+\hspace{1cm}
+
+
+Figure 1 depicts the difference between entropy calculated from normal spectrogram and whitened spectrogram:
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=8cm, height=6cm]{entropy}
+	\caption{ Entropy calculated from normal spectrogram and whitened spectrogram}   
+\end{figure}
+
+It becomes evident that identifying bird vocalizations using entropy calculated from whitened spectrogram is easier.  
+
+
+
+\subsection{Entropy Calculation from phase spectrum}
+
+
+
+\subsection{Detecting change points using thresholding}
+
+To detect the change points, thresholding is used. The local minimums and local maximums are calculated on the  entropy. The difference between consecutive local minimums and local maximums is calculated. If this difference is greater than pre-defined threshold, then corresponding local maximum is considered as the start of a bird vocalization or a change point. Then the difference between corresponding local minima and next local maxima is calculated. If this difference is greater than the threshold, local maxima is considered as the end of bird vocalization or another change point. Hence two contiguous change points correspond to the start and end of a bird vocalization. These change points can be tracked back to get the start and end time of the vocalization in sound recording. Figure 2 shows the local maximums and local minimums on an entropy plot along with change points calculated from thresholding.
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=9cm, height=4cm]{thresholding}
+	\caption{ Change points generated by thresholding and Extrema calculated on entropy}   
+\end{figure} 
+
+   
 
 
 
 
+\section{Experimentation and Performance Analysis}
 
+For experimentation, the labeled recordings of Cassin’s Vireo (\textit{Vireo cassinii}) and single species MLSP Bird Classification Challaenge 2013 datasets are used \cite{data}. 
 
-\subsection{Thresholding to detect change points}
+In Cassin's Vireo dataset, the total duration of recordings is about 45 minutes. Out of 45 minutes, about 5 minutes of recordings correspond to the phrases of Cassin's Vireo. To calculate spectrogram, frame length of 20 ms and increment of  
+5 ms is used. The time-frequency window of 138.8 ms is used along with increment of 15 ms to calculate entropy. The frequency range of the block is from 1.5 kHz to 7 kHz.  
 
-To detect the change points, thresholding is used. First of all, the entropy is smoothed by using moving average. The local minimums and local maximums are calculated on this smoothed entropy. Then the difference between consecutive local minimums and local maximums is calculated. If this difference is greater than pre-defined threshold, then corresponding local minimum is the change point. Two contiguous change points correspond to the start and end of a bird vocalization. These change points can be tracked back to get the start and end time of the vocalization in sound recording. Smoothing entropy helps in decreasing missed detection rate to some extent.    
-
-
-
-
-\subsection{Experimentation and Performance Analysis}
-
-For experimentation, the labeled recordings of Cassin’s Vireo (\textit{Vireo cassinii}) are used \cite{data}. The total duration of recordings is about 45 minutes. Out of 45 minutes, about 5 minutes of recordings correspond to the phrases of Cassin's Vireo. To calculate spectrogram, frame length of 20 ms and increment of  
-5 ms is used. The time-frequency window of 138.8 ms is used along with increment of 15 ms to calculate entropy. 
-
-For performance analysis, three metrics i.e. correct detection rate, missed detection rate and false alarm rate are used. These metrics are calculated using following equations:\newline
+The method is analyzed using manual annotations of bird vocalizations. For performance analysis, three metrics i.e. true positive rate, missed detection rate and false alarm rate are used. These metrics are calculated using following equations:\newline
 
 
 
-$\text{Correct (\%)}=\frac{\text{Correctly classified frames}} {\text{Total frames}} \times 100$\newline
+$\text{True Positive rate (\%)}=\frac{\text{Frames correctly classified as calls}} {\text{Total frames contating call activity}} \times 100$\newline
 
 
-$\text{Missed Detection (\%)}=\frac{\text{Call  frames classified as background}} {\text{Total call activity frames}} \times 100$\newline
+$\text{Missed Detection (\%)}=\frac{\text{Frames  misclassified as background}} {\text{Total call activity frames}} \times 100$\newline
 
 $\text{False Alarms (\%)}=\frac{\text{Background  frames classified as calls}} {\text{Total background frames}} \times 100$ \newline
 
 
-%%  write formullae for calculating correct, missed detection and false alarms
 
+ ROC curves are used for analyzing the method. Figure 3 depicts ROC curves comparing performance of methods based on entropy calculated from whitened spectrogram and entropy calculated from whitened group delay phase spectrum. It is clear from ROC plot in Figure 3 that whitened Group delay phase spectrum method is outperforming whitened power spectrum method.
+
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=9cm, height=5cm]{Power_vs_phase_white}
+	\caption{ROC curves comparing white phase spectrum and white power spectrum methods}   
+\end{figure} 
+
+
+
+The effect of whitening the phase spectrum before entropy calculation is evident from the ROC curves depicted in Figure 4 and Figure 5. The analysis of ROC in Figure 4 establishes that whitening the phase spectrum gives better performance than using phase spectrum which is not whitened. 
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=9cm, height=5cm]{phase_non_white_vs_phase_white}
+	\caption{ROC curves comparing performance of methods based whitened phase spectrum and non white phase spectrum}   
+\end{figure} 
+ 
+ Figure 5 shows comparison of ROC plots between methods based on white and non white power spectrum. 
+ 
+ \begin{figure}[!ht]
+ 	\centering
+ 	\includegraphics[width=9cm, height=5cm]{phase_non_white_vs_phase_white}
+ 	\caption{ROC curves comparing performance of methods based whitened power spectrum and non white power spectrum}   
+ \end{figure} 
+ 
+ 
+ 
+ 
+The method is also evaluated on an another dataset i.e. single species MLSP Bird Classification Challaenge 2013. The recordings have low signal to noise ratio.  Figure 6 shows ROC curves comparing performance of methods based on entropy calculated from whitened spectrogram and entropy calculated from whitened group delay phase spectrum on single species MLSP data.
+
+ 
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=9cm, height=4cm]{ROC_data_2_gd_vs_spectogram_white}
+	\caption{ROC curves comparing performance of methods based on white phase spectrum and white power spectrum on MLSP 2013 single species dataset }   
+\end{figure} 
+
+ 
+
+
+
+%%  write formullae for calculating correct, missed detection and false alarms
+\begin{comment}
 Table 1 shows results generated by applying entropy based segmentation with thresholding on different sound recordings. 
 
   
@@ -142,28 +223,12 @@ Table 1 shows results generated by applying entropy based segmentation with thre
 
 \end{table}
 
-\subsection{The whitening Spectrogram using PCA before Entropy Calculation}
+\end{comment}
+ 
+ 
+\section{Conclusion}
+We propose an entropy based bird vocalization segmentation method where entropy is calculated from Group Delay phase spectrum. It is also established that whitening the power or phase spectrum before entropy calculation improves the performance of entropy based segmentation. From experimentation,it is clear that the proposed group delay based method outperforms the power spectrum based method.  
 
-To whiten the spectrogram (\textit{PS}), the overall mean is calculated. This mean is subtracted from all values of spectrogram matrix. The covariance matrix of mean subtracted spectrogram is calculated. The Eigen values matrix (\textit{S}) and Eigen vectors matrix (\textit{U}) of this covariance matrix are calculated. The spectrogram matrix is whitened using the following equation:
-
-\hspace{1cm}
-
-$WhitePS=diag(\frac{1}{\sqrt{diag(S)+\epsilon}})*\textit{U'}*\textit{PS}$
-
-
-\hspace{1cm}
-
-The missed detection rate is decreased if whitened spectrogram is used for entropy calculation. This entropy remains almost constant for background but dips enough to mark the presence of bird vocalizations. Even low energy bird vocalizations can detected using entropy calculated from whitened spectrogram. Following figure depicts the difference between entropy calculated from normal spectrogram and whitened spectrogram:
-
-\includegraphics[width=8cm, height=6cm]{entropy}  
-
-  \section{Conclusions}
-
-CHECK
-
-  \section{Acknowledgements}
-  
-    The ISCA Board would like to thank the organizing committees of the past INTERSPEECH conferences for their help and for kindly providing the template files.
 
 
   \newpage
