@@ -55,10 +55,101 @@
 
 
 
-  \section{Introduction}
+\section{Introduction}
+
+With the advent of automated recording devices, the collection of large amounts of
+bioacoustic data has become relatively easy. By analysing birdcalls collected in
+this manner, it is possible to perform tasks such as the tracking of migrant
+species or examining the avian biodiversity of a given region. Typically, the
+collected data is processed offline. In this process, the first step is usually to
+determine regions of interest in the recording. An entropy-based bird phrase segmentation
+technique was developed in \cite{wang2013}. In this paper, we propose a modified
+version of that technique, by using information from the phase of the short-term
+Fourier transform (STFT.) Most techniques for processing speech and audio signals have
+utilised the magnitude spectrum of the STFT. Although the phase spectrum of the STFT has 
+useful information, its processing has remained difficult. A popular technique
+for exploiting information from the phase has been through group delay functions. In
+this work, we utilise information from group delay functions using parametric
+models, and apply it to segment birdcalls into active and inactive regions.
+
+The group delay function has good frequency resolution propreties, which enable
+it to be useful in tasks such as speech recognition and speaker recognition
+\cite{hema,padman}. The same property is beneficial in the processing of bird
+vocalizations. In \cite{wang2013}, the entropy within a sliding time-frequency
+window over the spectrogram has been effectively used for distinguishing active
+and inactive regions. The essential idea is that birdcalls have more structure
+(for eg.~harmonics may be present), and thus have lower entropy when compared to
+ background sounds, which have higher entropy. These differences in entropy
+levels enable effective distinction between birdcalls and the background.
+Applying a similar technique with the group delay function, rather than the
+spectrogram, provides increased frequency resolution, and hence more effective
+entropy computation. Spectral whitening is applied to smooth the entropy
+estimates and simple thresholding is applied to separate the birdcalls from 
+the background.
+
+Other methods for segmentation of birdsong include
+
+\section{Utilising Fourier transform phase}
+
+Commonly used features for processing speech and audio signals are based on the
+magnitude spectrum of the short-term Fourier transform. The phase spectrum has
+received relatively lesser attention due to signal processing difficulties, one
+of them being the need to unwrap the phase spectrum. The unwrapping problem can be
+bypassed by utilising the group delay function. The group delay function can be
+computed using properties of the Fourier transform, and hence avoids the need
+for explicit computation of the phase spectrum \cite{gdDeriv}. 
+However, this method can produce
+artifacts in the form of spurious peaks at spectral nulls. These nulls
+correspond to zeros close to the unit circle when the vocal tract transfer
+function is represented in the $Z$ domain. 
+%To avoid these spurious peaks, a
+%minimum-phase assumption is made on the 
+%underlying system. 
+Several methods have been proposed in the literature to overcome the effects due
+to these artifacts \cite{modgdf, productSpectrum}. Another technique to overcome
+this difficulty is to model the vocal tract as an all-pole filter. Such a
+technique derived using linear prediction analysis was used in the detection of
+formants in human speech \cite{yegnaFormant}. More recently, feature vectors
+derived from such a representation was used in speech \cite{drugman} and speaker
+recognition \cite{padman}. 
+
+There is strong evidence that birds use their vocal tract as a selective filter
+to modify the final sound \cite{catchpole}.  Given this, the source-filter model
+developed for analysing human speech can be applied to bird vocalizations as
+well.  Linear predictive (LP) analysis of human speech signals models the vocal
+tract spectrum as an all-pole filter \cite{makhoul} excited by a single source.
+This is a simplification of the `two-voice' theory of avian vocalization, in
+that there is assumed to be only one source, rather than two.  In
+\cite{agnihotri}, LP analysis has been applied in analysing the song of the
+greater racket-tailed drongo. Thus, modeling the avain vocal tract as an
+all-pole filter is a reasonable assumption.
+
+
+
+%This is equivalent to a cascade of several
+%first-order and second-order all-pole filters. The overall magnitude spectrum is
+%the product of the individual magnitude spectra, and the overall phase spectrum
+%is the sum of the individual phase spectra \cite{yegnaFormant}. Although
+%developed for human speech, th
+
+
+
+
+
 
 \section{Entropy-based segmentation of birdsong}
-This section describes how to calculate entropy from spectrogram and phase spectrum, also how to use entropy to identify bird vocalizations. The entropy of spectrograms of bird song recordings can be effectively used for distinguishing between background and bird vocalizations \cite{6625329}. Spectrogram of single bird song is generally sparse i.e. high power components acquire only a small portion of time-frequency bins and the background noise of spectrogram is relatively white. Hence  the entropy of sliding time frequency block over spectrogram is low when block contains a signal and is high when only background is present in that block. It is known that phase spectrum has more information than magnitude spectrum. So, phase spectrum can also be used to calculate entropy. Group delay functions from all pole models are used to calculate the phase spectrum. 
+This section describes how to calculate entropy from spectrogram and phase
+spectrum, also how to use entropy to identify bird vocalizations. In
+\cite{wang2013}, the entropy of spectrograms from recordings can be effectively used for distinguishing
+between background and bird vocalizations \cite{6625329}. Spectrogram of single
+bird song is generally sparse i.e. high power components acquire only a small
+portion of time-frequency bins and the background noise of spectrogram is
+relatively white. Hence  the entropy of sliding time frequency block over
+spectrogram is low when block contains a signal and is high when only background
+is present in that block. It is known that phase spectrum has more information
+than magnitude spectrum. So, phase spectrum can also be used to calculate
+entropy. Group delay functions from all pole models are used to calculate the
+phase spectrum. 
 
 \subsection{Entropy Calculation}
 Entropy is calculated for each time-frequency block on power spectrum. This time-frequency block of time length \textbf{\textit{w}} and having F frequency bins ranging from \textbf{\textit{f1}} to  \textbf{\textit{fn}} is moved horizontally from beginning to the end of power spectrum. The frequency range is different for each target species. \textbf{\textit{p(n,f)}} is power spectrum at time \textbf{\textit{n}} and frequency  \textbf{\textit{f}}. The entropy is calculated using following equation:
