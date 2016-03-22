@@ -13,7 +13,7 @@
 \sloppy % better line breaks
 \ninept
 
-\title{Segmentation of birdsong}
+\title{Entropy-based segmentation of birdcalls using Fourier transform phase}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% If multiple authors, uncomment and edit the lines shown below.       %%
@@ -51,7 +51,8 @@
   %
   \begin{abstract}
   \end{abstract}
-  \noindent{\bf Index Terms}: speech recognition, human-computer interaction, computational paralinguistics
+  \noindent{\bf Index Terms}: bioacoustics, birdcall segmentation, Fourier transform phase
+  
 
 
 
@@ -79,13 +80,16 @@ vocalizations. In \cite{wang2013}, the entropy within a sliding time-frequency
 window over the spectrogram has been effectively used for distinguishing active
 and inactive regions. The essential idea is that birdcalls have more structure
 (for eg.~harmonics may be present), and thus have lower entropy when compared to
- background sounds, which have higher entropy. These differences in entropy
+ background sounds, which have higher entropy. This difference in entropy
 levels enable effective distinction between birdcalls and the background.
-Applying a similar technique with the group delay function, rather than the
-spectrogram, provides increased frequency resolution, and hence more effective
-entropy computation. Spectral whitening is applied to smooth the entropy
-estimates and simple thresholding is applied to separate the birdcalls from 
-the background.
+%Applying a similar technique with the group delay function, rather than the
+%spectrogram, provides increased frequency resolution, and hence more effective
+%entropy computation. 
+The high resolution property of group delay functions enable accurate tracking
+of time-frequency information. In this work, the entropy of a sliding
+time-frequency window is estimated from the group delay representation. Spectral
+whitening is applied to smooth the entropy estimates and simple thresholding is
+applied to separate the birdcalls from the background.
 
 Other methods for segmentation of birdsong include
 
@@ -95,7 +99,8 @@ Commonly used features for processing speech and audio signals are based on the
 magnitude spectrum of the short-term Fourier transform. The phase spectrum has
 received relatively lesser attention due to signal processing difficulties, one
 of them being the need to unwrap the phase spectrum. The unwrapping problem can be
-bypassed by utilising the group delay function. The group delay function can be
+bypassed by utilising the group delay function, which is the negative derivative
+of the phase spectrum. The group delay function can be
 computed using properties of the Fourier transform, and hence avoids the need
 for explicit computation of the phase spectrum \cite{gdDeriv}. 
 However, this method can produce
@@ -107,7 +112,8 @@ function is represented in the $Z$ domain.
 %underlying system. 
 Several methods have been proposed in the literature to overcome the effects due
 to these artifacts \cite{modgdf, productSpectrum}. Another technique to overcome
-this difficulty is to model the vocal tract as an all-pole filter. Such a
+this difficulty is to model the vocal tract as an all-pole filter, hence
+avoiding the nulls altogether. Such a
 technique derived using linear prediction analysis was used in the detection of
 formants in human speech \cite{yegnaFormant}. 
 
@@ -117,18 +123,28 @@ to modify the final sound \cite{catchpole}.  Given this, the source-filter model
 developed for analysing human speech can be applied to bird vocalizations as
 well.  Linear predictive (LP) analysis of human speech signals models the vocal
 tract spectrum as an all-pole filter \cite{makhoul} excited by a single source.
-This is a simplification of the `two-voice' theory of avian vocalization, in
-that there is assumed to be only one source, rather than two.  In
-\cite{agnihotri}, LP analysis has been applied in analysing the song of the
-greater racket-tailed drongo. Thus, modeling the avain vocal tract as an
-all-pole filter is a reasonable assumption.
+When applied to birdcalls, this is a simplification of the `two-voice' theory of
+avian vocalization\cite{catchpoole}, in that there is assumed to be only one
+source, rather than two. Nevertheless, this reasonable assumption is followed in
+this work. A similar assumption has been made in \cite{agnihotri}, where LP
+analysis has been applied in analysing the song of the greater racket-tailed
+drongo.
 
-In LP analysis, the vocal tract is modelled as 
-
+The vocal tract is represented in the LP model as
+\begin{equation}
+H(\omega) = \frac{G}{1-\sum_{k=1}^{P} a(k) e^{-j \omega k}},
+\end{equation}
+where the predictor model order is $P$, $G$ represents the gain and $a(k)$ are
+the predictor coefficientses\cite{makhoul}.
 The filter reprsented by $H(\omega)$ is an all-pole filter, and its group delay
 function does not suffer from the artifacts mentioned earlier. The group delay
-function computed in this manner is henceforth termed as all-pole group delay
-function (APGDF.) Recently, feature vectors
+function computed in this manner is termed as all-pole group delay
+function (APGDF.) Figure \ref{fig:apgd} shows the magnitude spectrum, LP
+spectrum and APGDF derived from a 20 ms call of Cassins vireo (\textit{Vireo
+cassinii.}) As can be seen, the APGDF emphasises the formants, as compared to the
+magnitude spectrum or the LP spectrum.
+
+Recently, feature vectors
 derived from such a representation was used in speech \cite{drugman} and speaker
 recognition \cite{padman}. 
 
