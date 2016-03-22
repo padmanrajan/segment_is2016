@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2015.12.7)  22 MAR 2016 11:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2015.12.7)  22 MAR 2016 12:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -378,17 +378,41 @@ LaTeX Warning: Citation `makhoul' on page 1 undefined on input line 138.
 
 LaTeX Warning: Reference `fig:apgd' on page 1 undefined on input line 142.
 
+Package epstopdf Info: Source file: <apGd.eps>
+(epstopdf)                    date: 2016-03-22 12:00:09
+(epstopdf)                    size: 30257 bytes
+(epstopdf)             Output file: <apGd-eps-converted-to.pdf>
+(epstopdf)                    date: 2016-03-22 12:01:21
+(epstopdf)                    size: 22015 bytes
+(epstopdf)             Command: <repstopdf --outfile=apGd-eps-converted-to.pdf 
+apGd.eps>
+(epstopdf)             \includegraphics on input line 149.
+Package epstopdf Info: Output file is already uptodate.
+<apGd-eps-converted-to.pdf, id=1, 789.95125pt x 635.37375pt>
+File: apGd-eps-converted-to.pdf Graphic file (type pdf)
 
-LaTeX Warning: Citation `drugman' on page 1 undefined on input line 148.
+<use apGd-eps-converted-to.pdf>
+Package pdftex.def Info: apGd-eps-converted-to.pdf used on input line 149.
+(pdftex.def)             Requested size: 241.84482pt x 199.16458pt.
+
+Overfull \hbox (14.22278pt too wide) in paragraph at lines 149--150
+ [][] 
+ []
 
 
-LaTeX Warning: Citation `padman' on page 1 undefined on input line 149.
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-LaTeX Warning: Citation `wang2013' on page 1 undefined on input line 167.
+LaTeX Warning: Citation `drugman' on page 1 undefined on input line 156.
 
 
-LaTeX Warning: Citation `6625329' on page 1 undefined on input line 168.
+LaTeX Warning: Citation `padman' on page 1 undefined on input line 157.
+
+
+LaTeX Warning: Citation `wang2013' on page 1 undefined on input line 175.
+
+
+LaTeX Warning: Citation `6625329' on page 1 undefined on input line 176.
 
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
@@ -396,21 +420,21 @@ LaTeX Warning: Citation `6625329' on page 1 undefined on input line 168.
 
 ]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 179.
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 187.
 
-<entropy.png, id=18, 1028.34187pt x 490.08093pt>
+<entropy.png, id=19, 1028.34187pt x 490.08093pt>
 File: entropy.png Graphic file (type png)
  <use entropy.png>
-Package pdftex.def Info: entropy.png used on input line 218.
+Package pdftex.def Info: entropy.png used on input line 226.
 (pdftex.def)             Requested size: 227.61673pt x 170.71579pt.
 
-<thresholding.png, id=19, 706.13812pt x 413.29407pt>
+<thresholding.png, id=20, 706.13812pt x 413.29407pt>
 File: thresholding.png Graphic file (type png)
  <use thresholding.png>
-Package pdftex.def Info: thresholding.png used on input line 236.
+Package pdftex.def Info: thresholding.png used on input line 244.
 (pdftex.def)             Requested size: 256.07356pt x 113.81071pt.
 
-Overfull \hbox (28.45152pt too wide) in paragraph at lines 236--237
+Overfull \hbox (28.45152pt too wide) in paragraph at lines 244--245
  [][] 
  []
 
@@ -418,52 +442,42 @@ Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no ™ in font ptmr7t!
 
-LaTeX Warning: Citation `data' on page 2 undefined on input line 247.
+LaTeX Warning: Citation `data' on page 2 undefined on input line 255.
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 252--253
-
- []
-
-[2 <./entropy.png (PNG copy)> <./thresholding.png (PNG copy)>]
-Underfull \hbox (badness 10000) in paragraph at lines 256--257
+[2 <./apGd-eps-converted-to.pdf> <./entropy.png (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 260--261
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 259--260
+Underfull \hbox (badness 10000) in paragraph at lines 264--265
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 261--262
+Underfull \hbox (badness 10000) in paragraph at lines 267--268
 
  []
 
-<Power_vs_phase_white.png, id=27, 1028.34187pt x 343.2825pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 269--270
+
+ []
+
+<Power_vs_phase_white.png, id=34, 1028.34187pt x 343.2825pt>
 File: Power_vs_phase_white.png Graphic file (type png)
 
 <use Power_vs_phase_white.png>
-Package pdftex.def Info: Power_vs_phase_white.png used on input line 270.
+Package pdftex.def Info: Power_vs_phase_white.png used on input line 278.
 (pdftex.def)             Requested size: 256.0806pt x 142.26053pt.
 
-Overfull \hbox (28.45856pt too wide) in paragraph at lines 270--271
+Overfull \hbox (28.45856pt too wide) in paragraph at lines 278--279
  [][] 
  []
 
-<phase_non_white_vs_phase_white.png, id=28, 1028.34187pt x 349.305pt>
+<phase_non_white_vs_phase_white.png, id=35, 1028.34187pt x 349.305pt>
 File: phase_non_white_vs_phase_white.png Graphic file (type png)
 
-<use phase_non_white_vs_phase_white.png>
-Package pdftex.def Info: phase_non_white_vs_phase_white.png used on input line 
-280.
-(pdftex.def)             Requested size: 256.0806pt x 142.2619pt.
-
-Overfull \hbox (28.45856pt too wide) in paragraph at lines 280--281
- [][] 
- []
-
-File: phase_non_white_vs_phase_white.png Graphic file (type png)
 <use phase_non_white_vs_phase_white.png>
 Package pdftex.def Info: phase_non_white_vs_phase_white.png used on input line 
 288.
@@ -473,31 +487,43 @@ Overfull \hbox (28.45856pt too wide) in paragraph at lines 288--289
  [][] 
  []
 
-<ROC_data_2_gd_vs_spectogram_white.png, id=29, 1029.09468pt x 352.31625pt>
+File: phase_non_white_vs_phase_white.png Graphic file (type png)
+<use phase_non_white_vs_phase_white.png>
+Package pdftex.def Info: phase_non_white_vs_phase_white.png used on input line 
+296.
+(pdftex.def)             Requested size: 256.0806pt x 142.2619pt.
+
+Overfull \hbox (28.45856pt too wide) in paragraph at lines 296--297
+ [][] 
+ []
+
+<ROC_data_2_gd_vs_spectogram_white.png, id=36, 1029.09468pt x 352.31625pt>
 File: ROC_data_2_gd_vs_spectogram_white.png Graphic file (type png)
 
 <use ROC_data_2_gd_vs_spectogram_white.png>
 Package pdftex.def Info: ROC_data_2_gd_vs_spectogram_white.png used on input li
-ne 300.
+ne 308.
 (pdftex.def)             Requested size: 256.07962pt x 113.80792pt.
 
-Overfull \hbox (28.45758pt too wide) in paragraph at lines 300--301
+Overfull \hbox (28.45758pt too wide) in paragraph at lines 308--309
  [][] 
  []
 
-[3 <./Power_vs_phase_white.png (PNG copy)> <./phase_non_white_vs_phase_white.pn
-g (PNG copy)> <./ROC_data_2_gd_vs_spectogram_white.png (PNG copy)>]
+[3 <./thresholding.png (PNG copy)> <./Power_vs_phase_white.png (PNG copy)> <./p
+hase_non_white_vs_phase_white.png (PNG copy)>]
 No file segment.bbl.
-(./segment.aux)
+[4
+
+ <./ROC_data_2_gd_vs_spectogram_white.png (PNG copy)>] (./segment.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 3183 strings out of 495020
- 42637 string characters out of 6181324
- 99523 words of memory out of 5000000
- 6309 multiletter control sequences out of 15000+600000
+ 3190 strings out of 495020
+ 42782 string characters out of 6181324
+ 99531 words of memory out of 5000000
+ 6314 multiletter control sequences out of 15000+600000
  32336 words of font info for 80 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  38i,8n,26p,932b,323s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -516,10 +542,10 @@ e/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/t
 ype1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times
 /utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on segment.pdf (3 pages, 216432 bytes).
+Output written on segment.pdf (4 pages, 236046 bytes).
 PDF statistics:
- 84 PDF objects out of 1000 (max. 8388607)
- 57 compressed objects within 1 object stream
+ 94 PDF objects out of 1000 (max. 8388607)
+ 64 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 26 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 31 words of extra memory for PDF output out of 10000 (max. 10000000)
 
