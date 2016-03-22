@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2015.12.7)  21 MAR 2016 22:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2015.12.7)  21 MAR 2016 23:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -361,29 +361,32 @@ LaTeX Warning: Citation `productSpectrum' on page 1 undefined on input line 109
 LaTeX Warning: Citation `yegnaFormant' on page 1 undefined on input line 112.
 
 
-LaTeX Warning: Citation `drugman' on page 1 undefined on input line 113.
+LaTeX Warning: Citation `catchpole' on page 1 undefined on input line 116.
 
 
-LaTeX Warning: Citation `padman' on page 1 undefined on input line 114.
+LaTeX Warning: Citation `makhoul' on page 1 undefined on input line 119.
 
 
-LaTeX Warning: Citation `catchpole' on page 1 undefined on input line 117.
+LaTeX Warning: Citation `agnihotri' on page 1 undefined on input line 122.
 
 
-LaTeX Warning: Citation `makhoul' on page 1 undefined on input line 120.
+LaTeX Warning: Citation `drugman' on page 1 undefined on input line 132.
 
 
-LaTeX Warning: Citation `agnihotri' on page 1 undefined on input line 123.
+LaTeX Warning: Citation `padman' on page 1 undefined on input line 133.
 
 
-LaTeX Warning: Citation `wang2013' on page 1 undefined on input line 143.
+LaTeX Warning: Citation `wang2013' on page 1 undefined on input line 151.
 
 
-LaTeX Warning: Citation `6625329' on page 1 undefined on input line 144.
+LaTeX Warning: Citation `6625329' on page 1 undefined on input line 152.
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 155.
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 163.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
 
@@ -391,16 +394,16 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <9> not available
 <entropy.png, id=13, 1028.34187pt x 490.08093pt>
 File: entropy.png Graphic file (type png)
  <use entropy.png>
-Package pdftex.def Info: entropy.png used on input line 194.
+Package pdftex.def Info: entropy.png used on input line 202.
 (pdftex.def)             Requested size: 227.61673pt x 170.71579pt.
 
 <thresholding.png, id=14, 706.13812pt x 413.29407pt>
 File: thresholding.png Graphic file (type png)
  <use thresholding.png>
-Package pdftex.def Info: thresholding.png used on input line 212.
+Package pdftex.def Info: thresholding.png used on input line 220.
 (pdftex.def)             Requested size: 256.07356pt x 113.81071pt.
 
-Overfull \hbox (28.45152pt too wide) in paragraph at lines 212--213
+Overfull \hbox (28.45152pt too wide) in paragraph at lines 220--221
  [][] 
  []
 
@@ -408,25 +411,25 @@ Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no ™ in font ptmr7t!
 
-LaTeX Warning: Citation `data' on page 2 undefined on input line 223.
+LaTeX Warning: Citation `data' on page 2 undefined on input line 231.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 228--229
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 232--233
+Underfull \hbox (badness 10000) in paragraph at lines 236--237
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 235--236
+Underfull \hbox (badness 10000) in paragraph at lines 240--241
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 237--238
+Underfull \hbox (badness 10000) in paragraph at lines 243--244
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 245--246
 
  []
 
@@ -435,26 +438,16 @@ Underfull \hbox (badness 10000) in paragraph at lines 237--238
 File: Power_vs_phase_white.png Graphic file (type png)
 
 <use Power_vs_phase_white.png>
-Package pdftex.def Info: Power_vs_phase_white.png used on input line 246.
+Package pdftex.def Info: Power_vs_phase_white.png used on input line 254.
 (pdftex.def)             Requested size: 256.0806pt x 142.26053pt.
 
-Overfull \hbox (28.45856pt too wide) in paragraph at lines 246--247
+Overfull \hbox (28.45856pt too wide) in paragraph at lines 254--255
  [][] 
  []
 
 <phase_non_white_vs_phase_white.png, id=27, 1028.34187pt x 349.305pt>
 File: phase_non_white_vs_phase_white.png Graphic file (type png)
 
-<use phase_non_white_vs_phase_white.png>
-Package pdftex.def Info: phase_non_white_vs_phase_white.png used on input line 
-256.
-(pdftex.def)             Requested size: 256.0806pt x 142.2619pt.
-
-Overfull \hbox (28.45856pt too wide) in paragraph at lines 256--257
- [][] 
- []
-
-File: phase_non_white_vs_phase_white.png Graphic file (type png)
 <use phase_non_white_vs_phase_white.png>
 Package pdftex.def Info: phase_non_white_vs_phase_white.png used on input line 
 264.
@@ -464,20 +457,33 @@ Overfull \hbox (28.45856pt too wide) in paragraph at lines 264--265
  [][] 
  []
 
+File: phase_non_white_vs_phase_white.png Graphic file (type png)
+<use phase_non_white_vs_phase_white.png>
+Package pdftex.def Info: phase_non_white_vs_phase_white.png used on input line 
+272.
+(pdftex.def)             Requested size: 256.0806pt x 142.2619pt.
+
+Overfull \hbox (28.45856pt too wide) in paragraph at lines 272--273
+ [][] 
+ []
+
 <ROC_data_2_gd_vs_spectogram_white.png, id=28, 1029.09468pt x 352.31625pt>
 File: ROC_data_2_gd_vs_spectogram_white.png Graphic file (type png)
 
 <use ROC_data_2_gd_vs_spectogram_white.png>
 Package pdftex.def Info: ROC_data_2_gd_vs_spectogram_white.png used on input li
-ne 276.
+ne 284.
 (pdftex.def)             Requested size: 256.07962pt x 113.80792pt.
 
-Overfull \hbox (28.45758pt too wide) in paragraph at lines 276--277
+Overfull \hbox (28.45758pt too wide) in paragraph at lines 284--285
  [][] 
  []
 
-[3 <./Power_vs_phase_white.png (PNG copy)> <./phase_non_white_vs_phase_white.pn
-g (PNG copy)> <./ROC_data_2_gd_vs_spectogram_white.png (PNG copy)>]
+
+Underfull \vbox (badness 6859) has occurred while \output is active []
+
+ [3 <./Power_vs_phase_white.png (PNG copy)> <./phase_non_white_vs_phase_white.p
+ng (PNG copy)> <./ROC_data_2_gd_vs_spectogram_white.png (PNG copy)>]
 No file segment.bbl.
 (./segment.aux)
 
@@ -507,7 +513,7 @@ ive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur
 w/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a
 .pfb>
-Output written on segment.pdf (3 pages, 206271 bytes).
+Output written on segment.pdf (3 pages, 207078 bytes).
 PDF statistics:
  80 PDF objects out of 1000 (max. 8388607)
  54 compressed objects within 1 object stream

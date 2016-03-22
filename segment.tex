@@ -109,9 +109,8 @@ Several methods have been proposed in the literature to overcome the effects due
 to these artifacts \cite{modgdf, productSpectrum}. Another technique to overcome
 this difficulty is to model the vocal tract as an all-pole filter. Such a
 technique derived using linear prediction analysis was used in the detection of
-formants in human speech \cite{yegnaFormant}. More recently, feature vectors
-derived from such a representation was used in speech \cite{drugman} and speaker
-recognition \cite{padman}. 
+formants in human speech \cite{yegnaFormant}. 
+
 
 There is strong evidence that birds use their vocal tract as a selective filter
 to modify the final sound \cite{catchpole}.  Given this, the source-filter model
@@ -123,6 +122,15 @@ that there is assumed to be only one source, rather than two.  In
 \cite{agnihotri}, LP analysis has been applied in analysing the song of the
 greater racket-tailed drongo. Thus, modeling the avain vocal tract as an
 all-pole filter is a reasonable assumption.
+
+In LP analysis, the vocal tract is modelled as 
+
+The filter reprsented by $H(\omega)$ is an all-pole filter, and its group delay
+function does not suffer from the artifacts mentioned earlier. The group delay
+function computed in this manner is henceforth termed as all-pole group delay
+function (APGDF.) Recently, feature vectors
+derived from such a representation was used in speech \cite{drugman} and speaker
+recognition \cite{padman}. 
 
 
 
