@@ -50,6 +50,20 @@
   \maketitle
   %
   \begin{abstract}
+  In this paper we describe an entropy-based algorithm for the segmentation of
+  birdcalls from recordings. The entropy of time-frequency blocks are estimated
+  from the phase of the Fourier transform. To overcome difficulties in
+  processing the phase, the group delay function from an all-pole filter is
+  utilised. The group delay function has good frequency resolution properties,
+  and hence provides relaiable estimates of the entropy. Furthermore, spectral
+  whitening is performed to smooth the entropy estimate and the extremities are
+  determined. A threshold is applied on the difference to distinguish the call
+  periods from the background.  The algorithm is evaluated on two different
+  datasets, one of which is recorded in more challenging field conditions. When
+  compared to entropy estimated from the power spectrum, the entropy from the
+  group delay function provides better detection accuracy at almost all
+  operating points. The choice of model order of the all-pole filter for
+  different bird species is also briefly investigated.
   \end{abstract}
   \noindent{\bf Index Terms}: bioacoustics, birdcall segmentation, Fourier transform phase
   
@@ -172,6 +186,34 @@ recognition \cite{padman}.
 
 
 \section{Entropy-based segmentation of birdsong}
+
+After dividing the input recording into frames, APGDF is estimated for each
+frame. A sliding time-frequency window of width $w$ frames and frequency range
+$fmin$ to $fmax$ is considered over the APGDF vectors. As in \cite{wang2013},
+the entropy of this window is estimated using the expression
+\begin{equation}
+H(\omega) = \frac{G}{1-\sum_{k=1}^{P} a(k) e^{-j \omega k}},
+\end{equation}
+
+Unlike the power spectrum, the APGDF can be negative. 
+Since here we are interested only in the magnitudes and
+locations of the frequency components, the sign of the APGDF is
+ignored by taking the absolute value. 
+%The APGDF from figure
+%\ref{fig:apgd} is shown in \ref{fig:apgdNoSign} after ignoring the sign.
+%\begin{figure}[h]
+%\centering
+%\includegraphics[width=0.5\textwidth,height=2cm]{apgdNoSign.eps}
+%\caption{based on all pole model (in the bottom panel).}
+%\label{fig:all-pole}
+%\end{figure}
+
+
+
+
+
+
+
 This section describes how to calculate entropy from spectrogram and phase
 spectrum, also how to use entropy to identify bird vocalizations. In
 \cite{wang2013}, the entropy of spectrograms from recordings can be effectively used for distinguishing
