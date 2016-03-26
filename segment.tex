@@ -195,25 +195,31 @@ recognition \cite{padman}.
 
 \section{Entropy-based segmentation of birdsong}
 
-Computing the APGDF for every frame enables good time-frequency resolution of  the audio recording. Unlike the power spectrum, the APGDF can be negative. 
-Since here we are interested only in the magnitudes and
-locations of the frequency components, the sign of the APGDF is
-ignored by taking the absolute value. Henceforth, APGDF means positive APGDF. 
- A sliding time-frequency window of width $w$ frames and frequency range
-$fmin$ to $fmax$ is considered over the APGDF vectors. As in \cite{wang2013},
-the entropy of this window is estimated using the expression
+Computing the APGDF for every frame enables good time-frequency resolution of
+the audio recording. Unlike the power spectrum, the APGDF can be negative.
+Since here we are interested only in the magnitudes and locations of the
+frequency components, the sign of the APGDF is ignored by taking the absolute
+value. Henceforth, APGDF means positive APGDF.  A sliding time-frequency window
+of width $w$ frames and frequency range $fmin$ to $fmax$ is considered over the
+APGDF vectors. As in \cite{wang2013}, the entropy of this window is estimated
+using the expression
 \begin{equation}
 h_{k}=-\sum_{n=kT+1}^{kT+w}\sum_{f=fmin}^{fmax} \uptau_N(n,f) \ln \uptau_N(n,f),
 \end{equation}
-where $T$ is the time-frequency window shift and $\uptau_N(n,f)$ is normalized APGDF. $\uptau_N(n,f)$ is estimated using the expression \cite{wang2013}
+where $T$ is the time-frequency window shift and $\uptau_N(n,f)$ is the
+normalized APGDF. $\uptau_N(n,f)$ is computed as 
 \begin{equation}
 \uptau_N(n,f)=\frac {\uptau(n,f)}
 {\sum_{n=kT+1}^{kT+w}\sum_{f=fmin}^{fmax} \uptau(n,f)},
 \end{equation}
+where $\uptau(n,f)$ is the APGDF at frame $n$ and frequency $f$.
 
-where $\uptau(n,f)$ is APGDF at frame $n$ and frequency  \textit{f}.
-
-The entropy of the time-frequency windows containing bird call is lower than the one only containing the background. The entropy calculated from time-frequency window is less susceptible to sudden changes in background as compared to the entropy calculated at each time instance \cite{wang2013}.
+The entropy of the time-frequency windows containing a bird call is lower than the
+one containing only the background. \textit{What happens at transistions?}
+The entropy calculated from time-frequency
+window is less susceptible to sudden changes in background as compared to the
+entropy calculated at each time instance \cite{wang2013}.
+\textit{check this}
 
 %The APGDF from figure
 %\ref{fig:apgd} is shown in \ref{fig:apgdNoSign} after ignoring the sign.
@@ -231,18 +237,29 @@ The entropy of the time-frequency windows containing bird call is lower than the
 
 \subsection{Whitening APGDF before Entropy Calculation}
 
-The drop in entropy during the presence of bird vocalizations makes it possible to detect call periods. Due to the presence of various background sounds e.g. rain, thunder, other animals etc., entropy of the background can  vary rapidly making it difficult to separate it from entropy  at a call period. To mitigate this problem to some extent, APGDF is whitened  before calculating entropy. The entropy calculated from whitened APGDF  is almost constant for background but dips enough to mark the presence of bird vocalizations. Due to this nature of background entropy, small change in entropy can be detected reliably.
+The drop in entropy during the presence of bird vocalizations makes it possible
+to detect call periods. Due to the presence of various background sounds e.g.
+rain, thunder, other animals etc., entropy of the background can  vary rapidly
+making it difficult to distinguish it from the entropy during a call period. To mitigate
+this problem to some extent, following \cite{wang2013}, the APGDF is whitened 
+before calculating the
+entropy. This makes the entropy of the background relatively constant and dips
+enough to mark the presence of bird vocalizations. Due to this, small change in entropy 
+can be detected quite reliably.
 
-To whiten the APGDF ($\uptau(n,f)$), the covariance matrix of mean subtracted APGDF is estimated. The eigen value matrix (\textit{S}) and eigen vector matrix (\textit{U}) of this covariance matrix are calculated. The white APGDF  ($\uptau_W(n,f)$) is calculated using the following expression:
+To whiten the APGDF ($\uptau(n,f)$), the covariance matrix $C$ of the mean-subtracted
+APGDF is estimated. The eigenvalue matrix $S$ and the eigenvector matrix
+$U$ of $C$ are determined. The whitened APGDF
+($\uptau_W(n,f)$) is calculated as
 
 \begin{equation}
-\uptau_W(n,f)=\text{diag} \bigg(  \frac{1}{\sqrt{\text{diag(S)}+\epsilon}} \bigg )*U'*\uptau(n,f),
+\uptau_W(n,f)=\text{diag} \bigg(  \frac{1}{\sqrt{\text{diag(S)}+\epsilon}} \bigg )*U'*\uptau(n,f)
 \end{equation}
 
+check the formula above
 
-
-
-Henceforth, the whitened APGDF is used to calculate entropy. The difference between entropy calculated from normal phase spectrum and whitened phase spectrum is evident in Figure \ref{fig:entropy}.
+Therefore, we use the whitened APGDF in our experiments. The entropy from the
+orinal APGDF and the whitened APGDF are shown in figure \ref{fig:entropy}.
 
 \begin{figure}[h]
 \centering
@@ -258,7 +275,12 @@ Henceforth, the whitened APGDF is used to calculate entropy. The difference betw
 
 
    
-To detect the change points, extrema-based thresholding is used. Local minima and maxima are estimated on the entropy.  The thresholding is applied on the difference of  consecutive local maxima and local minima to determine the change point.  Two contiguous change points correspond to the start and end of a bird vocalization. These change points can be tracked back to get the start and end time of the vocalization in sound recording.     
+To detect the change points, extrema-based thresholding is used. Local minima
+and maxima are estimated on the entropy.  A threshold is applied on the
+difference of adjacent maxima and minima to determine the change point. Two
+contiguous change points correspond to the start and end of a bird vocalization.
+Using the XXX and YYY, these change points can be tracked back to get the start
+and end time of the vocalization in sound recording.
    
    
    
@@ -267,11 +289,45 @@ To detect the change points, extrema-based thresholding is used. Local minima an
 
 
 \section{Experimentation and Performance Analysis}
-The propose algorithm is evaluated on two datasets: Cassin’s Vireo \cite{data1} and the MLSP Bird Classification Challaenge 2013 dataset \cite{data2}. In Cassin's Vireo dataset, the total duration of recordings is about 45 minutes. Out of 45 minutes, about 5 minutes of recordings correspond to the phrases of Cassin's Vireo. Phrase annotations are provided with the dataset. These annotations are used as ground truth for evaluation of the proposed approach. The second dataset used is a subset of MLSP bird classification challenge 2013 dataset \cite{data2}. The dataset is collected in the H. J. Andrews (HJA) long-term experimental research forest in Oregon. The audio recordings also include rain and wind in background. The recordings are done for over two years at 13 different locations. Twenty Five files of ten seconds length are taken from the data to evaluate the proposed method. Manual annotations are done to mark the presence of bird vocalizations in these audio files.  
+The proposed algorithm is evaluated on two datasets. The first consists of
+recordings of a single species, the Cassin`s vireo, and second is a subset of
+the MLSP 2013 bird classification challengne, consisting of recordings from several species. In
+the Cassin's vireo dataset \cite{data1}, the total suration of recordings is about 45
+minutes, out of which about 5 minutes correspond to the calls. These recordings
+are fairly clean and have less backgound??? Phrase
+annotations are provided with the dataset, the start and end of which are used
+as the ground truth.
 
+The MLSP 2013 dataset \cite{data2} is much nosier and includes wind and rain in
+the background. Twenty five files of ten seconds each 
 
-To calculate APGDF, frame length of 20 ms and increment of  
-5 ms is used. The time-frequency window of 138.8 ms is used along with increment of 15 ms to calculate entropy. The frequency range of the block is from 1.5 kHz to 7 kHz \cite{wang2013}. The proposed algorithm is compared witha a modified version of technique proposed in \cite{wang2013}. The entropy estimated from whitened power spectrum is used to determine the change points. Similar to the proposed algorithm, extrema-based thresholding is referred to determine the change points. Thus, entropy from power spectrum is compared to the entropy from APGDF. Receiver operating characteristic (ROC) curves are used to analyze the performance of both the techniques. True positive rate and false alarm rate are calculated using following equations:
+The second dataset used is a subset of MLSP bird classification challenge 2013
+dataset \cite{data2}. The dataset is collected in the H. J. Andrews (HJA)
+long-term experimental research forest in Oregon. The audio recordings also
+include rain and wind in background. The recordings are done for over two years
+at 13 different locations. Twenty Five files of ten seconds length are taken
+from the data to evaluate the proposed method. 
+
+Manual annotations are done to
+mark the presence of bird vocalizations in these audio files.  
+
+The proposed algorithm is compared with a modified version of
+technique proposed in \cite{wang2013}. The entropy estimated from the whitened power
+spectrum is used to determine the change points. Similar to the proposed
+algorithm, extrema-based thresholding is utilised to determine the change
+points. 
+
+The front-end processing utilises a frame length of 20ms and frame shift of 5ms.
+A time-frequency window of length $w$=138.8 ms is used along with increment of
+$T$ = 15 ms to estimate entropy (see equation XXX.) The frequency range of the
+block is from XXX 1.5 kHz to 7 kHz
+as in \cite{wang2013}. 
+
+%Thus, entropy from power spectrum is compared to the entropy from APGDF.
+
+Receiver operating characteristic (ROC) curves are used to analyze the
+performance of both the techniques. True positive rate and false alarm rate are
+calculated as
 
 \begin{equation}
 \text{TPR} (\%)=\frac{\text{Correctly Classified Call Frames}} {\text{Total Call Frames}} \times 100 
@@ -286,7 +342,10 @@ To calculate APGDF, frame length of 20 ms and increment of
 
 
 
- Figure \ref{fig:ROCdata1} depicts ROC curves comparing performance of the methods based on entropy calculated from power spectrum and the entropy calculated from APGDF. It is clear from  Figure \ref{fig:ROCdata1} that the APGDF method outperforms the power spectrum method.
+ Figure \ref{fig:ROCdata1} depicts ROC curves comparing the performance of 
+ the methods based on entropy calculated from power spectrum and the entropy
+ calculated from APGDF. It is clear from  (figure, not Figure XXX) Figure \ref{fig:ROCdata1} that the
+ APGDF method outperforms the power spectrum method. On what dataset is this???
 
 \begin{figure}[h]
 \centering
@@ -295,12 +354,10 @@ To calculate APGDF, frame length of 20 ms and increment of
 \label{fig:ROCdata1}
 \end{figure}
 
-
-
- 
- 
- 
- Figure \ref{fig:ROCdata2} shows ROC curves comparing performance of methods based on entropy calculated from APDGF  and power spectrum on dataset 2. Here too, APGDF based method outperforms power spectrum based method for almost all the operating points. 
+ Figure \ref{fig:ROCdata2} shows ROC curves comparing performance of methods
+ based on entropy calculated from APDGF  and power spectrum on dataset 2. Here
+ too, APGDF based method outperforms power spectrum based method for almost all
+ the operating points. 
 
  
 \begin{figure}[!ht]
