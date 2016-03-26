@@ -7,6 +7,7 @@
 \usepackage{textcomp}
 \usepackage{verbatim}
 \usepackage{cite}
+\usepackage{upgreek}
 
 \def\vec#1{\ensuremath{\bm{{#1}}}}
 \def\mat#1{\vec{#1}}
@@ -91,7 +92,7 @@ models, and apply it to segment birdcalls into active and inactive regions.
 
 The group delay function has good frequency resolution propreties, which enable
 it to be useful in tasks such as speech recognition and speaker recognition
-\cite{hema,padman}. The same property is beneficial in the processing of bird
+\cite{hema} \cite{padman} \cite{modgdf}. The same property is beneficial in the processing of bird
 vocalizations. In \cite{wang2013}, the entropy within a sliding time-frequency
 window over the spectrogram has been effectively used for distinguishing active
 and inactive regions. The essential idea is that birdcalls have more structure
@@ -102,12 +103,12 @@ levels enable effective distinction between birdcalls and the background.
 %spectrogram, provides increased frequency resolution, and hence more effective
 %entropy computation. 
 The high resolution property of group delay functions enable accurate tracking
-of time-frequency information. In this work, the entropy of a sliding
+of time-frequency information \cite{padman}. In this work, the entropy of a sliding
 time-frequency window is estimated from the group delay representation. Spectral
-whitening is applied to smooth the entropy estimates and simple thresholding is
+whitening is applied to smooth the entropy estimates and thresholding on differences of extrema is
 applied to separate the birdcalls from the background.
 
-Most of the proposed species identification systems have used manually segmented bird calls \cite{Trifa} \cite{Lee}. However, many bird call segmentation methods have also been proposed. A time domain energy based segmentation has been used in many studies \cite{Harma} \cite{Somervuo} \cite{Fagerlund}. This energy  based segmentation method is highly influenced by background noise and will be affected if bird calls have low energy in comparison to the background. The KL divergence based segmentation method   is proposed in \cite{Lakshmi}.  KL divergence between power spectrum of a frame and uniform distribution is computed. Local minima of KL divergence act as change points for bird vocalizations. In \cite{Neal} , a Random Forest based segmentation approach is proposed. This method works in time frequency domain and can resolve bird calls overlapping in time. A template based  approach proposed in \cite{Kaewtip} uses Dynamic Time Warping (DTW) to segment bird calls from recordings.
+Most of the bioacoustic studies have used manually segmented bird calls \cite{Trifa} \cite{Lee} \cite{Kaewtip}. Time domain segmentation using energy has been used in many studies \cite{Harma} \cite{Somervuo} \cite{Fagerlund} . The energy  based segmentation method is highly influenced by background noise and will  where bird calls have low energy in comparison to the background. A KL-divergence based segmentation method   is proposed in \cite{Lakshmi}.  KL-divergence between normalized power spectral density of a frame and uniform distribution is computed. Local minima of KL divergence act as change points for bird vocalizations. In \cite{Neal} , time-frequency domain based segmentation using random forest classifier is proposed to segment the syllables from noisy audio signal. 
 
 
 
@@ -144,7 +145,7 @@ developed for analysing human speech can be applied to bird vocalizations as
 well.  Linear predictive (LP) analysis of human speech signals models the vocal
 tract spectrum as an all-pole filter \cite{makhoul} excited by a single source.
 When applied to birdcalls, this is a simplification of the `two-voice' theory of
-avian vocalization\cite{catchpoole}, in that there is assumed to be only one
+avian vocalization\cite{catchpole}, in that there is assumed to be only one
 source, rather than two. Nevertheless, this reasonable assumption is followed in
 this work. A similar assumption has been made in \cite{agnihotri}, where LP
 analysis has been applied in analysing the song of the greater racket-tailed
@@ -159,7 +160,7 @@ the predictor coefficientses\cite{makhoul}.
 The filter reprsented by $H(\omega)$ is an all-pole filter, and its group delay
 function does not suffer from the artifacts mentioned earlier. The group delay
 function computed in this manner is termed as all-pole group delay
-function (APGDF.) Figure \ref{fig:apgd} shows the magnitude spectrum, LP
+function (APGDF.) Figure \ref{fig:all-pole} shows the magnitude spectrum, LP
 spectrum and APGDF derived from a 20 ms call of Cassins vireo (\textit{Vireo
 cassinii.}) As can be seen, the APGDF emphasises the formants, as compared to the
 DFT magnitude spectrum or the LP magnitude spectrum. Two peaks which are merged
@@ -168,14 +169,15 @@ APGDF.
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.5\textwidth,height=7cm]{apGd.eps}
+\includegraphics[width=0.5\textwidth,height=7cm]
+{apGd.eps}
 \caption{based on all pole model (in the bottom panel).}
 \label{fig:all-pole}
 \end{figure}
 
 
 Recently, feature vectors
-derived from such a representation was used in speech \cite{drugman} and speaker
+derived from such a representation were used in speech \cite{drugman} and speaker
 recognition \cite{padman}. 
 
 
@@ -192,31 +194,30 @@ recognition \cite{padman}.
 
 
 \section{Entropy-based segmentation of birdsong}
-This section describes the calculation of entropy from APGDF phase
-spectrum. After dividing the input recording into frames, APGDF is estimated for each
-frame. A sliding time-frequency window of width $w$ frames and frequency range
+
+Computing the APGDF for every frame enables good time-frequency resolution of audio recording. Unlike the power spectrum, the APGDF can be negative. 
+Since here we are interested only in the magnitudes and
+locations of the frequency components, the sign of the APGDF is
+ignored by taking the absolute value. Henceforth, APGDF means positive APGDF. 
+ A sliding time-frequency window of width $w$ frames and frequency range
 $fmin$ to $fmax$ is considered over the APGDF vectors. As in \cite{wang2013},
 the entropy of this window is estimated using the expression
 \begin{equation}
-h_{k}=-\sum_{n=kT+1}^{kT+w}\sum_{f=fmin}^{fmax}z(n,f) \ln z(n,f),
+h_{k}=-\sum_{n=kT+1}^{kT+w}\sum_{f=fmin}^{fmax} \uptau_N(n,f) \ln \uptau_N(n,f),
 \end{equation}
-where $T$ is time-frequency window shift and $z(n,f)$ is normalized phase spectrum.
+where $T$ is time-frequency window shift and $\uptau_N(n,f)$ is normalized APGDF phase spectrum.
 
 
-$z(n,f)$ is estimated using the expression \cite{wang2013}
+$\uptau_N(n,f)$ is estimated using the expression \cite{wang2013}
 \begin{equation}
-z(n,f)=\frac {p(n,f)}
-{\sum_{n=kT+1}^{kT+w}\sum_{f=fmin}^{fmax} p(n,f)},
+\uptau_N(n,f)=\frac {\uptau(n,f)}
+{\sum_{n=kT+1}^{kT+w}\sum_{f=fmin}^{fmax} \uptau(n,f)},
 \end{equation}
 
-where $p(n,f)$ is phase spectrum at time $n$ and frequency  \textbf{\textit{f}}.
+where $\uptau(n,f)$ is APGDF phase spectrum at time $n$ and frequency  \textit{f}.
 
-The entropy calculated from block is less susceptible to the bursts of background noise in comparison to the entropy calculated at each time instance \cite{wang2013}.
+The entropy of the time-frequency windows containing bird call is lower than the one containing the background. The entropy calculated from block is less susceptible to the sudden changes in background as compared to the entropy calculated at each time instance \cite{wang2013}.
 
-Unlike the power spectrum, the APGDF can be negative. 
-Since here we are interested only in the magnitudes and
-locations of the frequency components, the sign of the APGDF is
-ignored by taking the absolute value. 
 %The APGDF from figure
 %\ref{fig:apgd} is shown in \ref{fig:apgdNoSign} after ignoring the sign.
 %\begin{figure}[h]
@@ -231,26 +232,24 @@ ignored by taking the absolute value.
  
 
 
-\subsection{Whitening Spectrogram before Entropy Calculation}
+\subsection{Whitening APGDF before Entropy Calculation}
 
-To identify the bird vocalizations using entropy, there should be a clear distinction between the entropy of background and call period. However this is not always the case in raw sound recordings. Depending on the interference level, entropy of the background can  vary rapidly making it difficult to separate it from entropy  at a call period \cite{wang2013}. To overcome this problem, whole phase spectrum is whitened using Principle Component Analysis (PCA)  before calculating entropy. The entropy calculated from whitened phase spectrum is almost constant for background but dips enough to mark the presence of bird vocalizations. Due to this nature of background entropy, even a small change in entropy can be detected easily.
+The drop in entropy at the presence of bird vocalizations makes it possible to detect call periods. This drop can only be detected accurately if background entropy is not changing drastically.  However this is not always the case in raw sound recordings. Due to the presence of various background sounds e.g. rain, thunder, other animals etc., entropy of the background can  vary rapidly making it difficult to separate it from entropy  at a call period \cite{wang2013}. To overcome this problem, whole APGDF spectrum is whitened  before calculating entropy. The entropy calculated from whitened APGDF spectrum is almost constant for background but dips enough to mark the presence of bird vocalizations. Due to this nature of background entropy, even a small change in entropy can be detected easily.
 
-To whiten the phase spectrum ($PS$), the covariance matrix of mean subtracted phase spectrum is calculated. The Eigen values matrix (\textit{S}) and Eigen vectors matrix (\textit{U}) of this covariance matrix are calculated. The white phase spectrum matrix ($WhitePS$) is calculated using the following expression:
+To whiten the APGDF spectrum ($\uptau(n,f)$), the covariance matrix of mean subtracted APGDF spectrum is calculated. The eigen values matrix (\textit{S}) and eigen vectors matrix (\textit{U}) of this covariance matrix are calculated. The white APGDF spectrum matrix ($\uptau_W(n,f)$) is calculated using the following expression:
 
 \begin{equation}
-    
-
-$WhitePS=diag(\frac{1}{\sqrt{diag(S)+\epsilon}})*\textit{U'}*\textit{PS}}$
+\uptau_W(n,f)=diag \bigg(  \frac{1}{\sqrt{diag(S)+\epsilon}} \bigg )*U'*\uptau(n,f),
 \end{equation}
 
 
 
 
-The difference between entropy calculated from normal phase spectrum and whitened phase spectrum is evident in Figure 2.
+The difference between entropy calculated from normal phase spectrum and whitened phase spectrum is evident in Figure \ref{fig:entropy}.
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.5\textwidth,height=8cm]{Entropy_gd_white_non_white.eps}
+\includegraphics[width=0.5\textwidth,height=7.5cm]{Entropy_gd_white_non_white2.eps}
 \caption{Entropy calculated from phase spectrum and whitened phase spectrum respecively.}
 \label{fig:entropy}
 \end{figure}
@@ -262,7 +261,7 @@ The difference between entropy calculated from normal phase spectrum and whitene
 
 
    
-To detect the change points, extrema based thresholding is used. The local extrema are estimated on entropy.  The thresholding is applied on the differences of consecutive local maxima and local minima to find out the change points.  Two contiguous change points correspond to the start and end of a bird vocalization. These change points can be tracked back to get the start and end time of the vocalization in sound recording.     
+To detect the change points, extrema-based thresholding is used. Local minima and maxima are estimated on the entropy.  The thresholding is applied on the difference of  consecutive local maximum and local minimum to find out the change point.  Two contiguous change points correspond to the start and end of a bird vocalization. These change points can be tracked back to get the start and end time of the vocalization in sound recording.     
    
    
    
@@ -271,34 +270,28 @@ To detect the change points, extrema based thresholding is used. The local extre
 
 
 \section{Experimentation and Performance Analysis}
+The propose algorithm is evaluated on two datasets: Cassin’s Vireo \cite{data1} and MLSP Bird Classification Challaenge 2013 dataset \cite{data2}. In Cassin's Vireo dataset, the total duration of recordings is about 45 minutes. Out of 45 minutes, about 5 minutes of recordings correspond to the phrases of Cassin's Vireo. To calculate APGDF spectrum, frame length of 20 ms and increment of  
+5 ms is used. The time-frequency window of 138.8 ms is used along with increment of 15 ms to calculate entropy. The frequency range of the block is from 1.5 kHz to 7 kHz \cite{wang2013}.Phrase annotations are available with the dataset \cite{data1}. These annotations are used as ground truth for evaluation of the proposed approach. For performance analysis, receiver operating characteristic (ROC) curves are used. A ROC curve is a  plot between false alarm rate (FAR) and true positive rate (TPR). 
+True positive rate and false alarm rate are calculated using following equations:
 
-For experimentation, the labeled recordings of Cassin’s Vireo (\textit{Vireo cassinii}) \cite{data1} and single species MLSP Bird Classification Challaenge 2013 datasets are used \cite{data2}. 
-
-In Cassin's Vireo dataset, the total duration of recordings is about 45 minutes. Out of 45 minutes, about 5 minutes of recordings correspond to the phrases of Cassin's Vireo. To calculate spectrogram, frame length of 20 ms and increment of  
-5 ms is used. The time-frequency window of 138.8 ms is used along with increment of 15 ms to calculate entropy. The frequency range of the block is from 1.5 kHz to 7 kHz.  
-
-The method is analyzed using manual annotations of bird vocalizations. For performance analysis, three metrics i.e. true positive rate (TPR), missed detection rate and false alarm rate are used. These metrics are calculated using following equations:\newline
-
-
-
-    
-
-$\text{TPR (\%)}=\frac{\text{Frames correctly classified as calls}} {\text{Total frames containing call activity}} \times 100$ \newline
+\begin{equation}
+TPR (\%)=\frac{\text{Correctly Classified Call Frames}} {\text{Total Call Frames}} \times 100 
+\end{equation}
 
 
 
 
+\begin{equation}
+FAR (\%)=\frac{\text{Wrongly Classified As Call Frames}} {\text{Total Background Frames}} \times 100 
+\end{equation}
 
 
-$\text{False Alarms (\%)}=\frac{\text{Background  frames classified as calls}} {\text{Total background frames}} \times 100$ \newline
 
-
-
- ROC curves are used for analyzing the method. Figure 3 depicts ROC curves comparing performance of methods based on entropy calculated from whitened spectrogram and entropy calculated from whitened group delay phase spectrum. It is clear from ROC plot in Figure 3 that whitened Group delay phase spectrum method is outperforming whitened power spectrum method.
+ Figure \ref{fig:ROCdata1} depicts ROC curves comparing performance of methods based on entropy calculated from whitened spectrogram and entropy calculated from whitened group delay phase spectrum. It is clear from ROC plot in Figure \ref{fig:ROCdata1} that whitened APGDF method is outperforming the technique in \cite{wang2013} using whitened spectrogram and thresholding.
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.6\textwidth,height=7cm]{ROC_gr_delay_5_VS_spectrogram.eps}
+\includegraphics[width=0.5\textwidth,height=7cm]{gd_1.eps}
 \caption{ROC  curves  comparing  performance  of  methods based on white phase spectrum and white power spectrum on Cassin's Vireo dataset.}
 \label{fig:ROCdata1}
 \end{figure}
@@ -308,35 +301,41 @@ $\text{False Alarms (\%)}=\frac{\text{Background  frames classified as calls}} {
  
  
  
-The method is also evaluated on an another dataset i.e. single species MLSP Bird Classification Challaenge 2013. The recordings have low signal to noise ratio.  Figure 4 shows ROC curves comparing performance of methods based on entropy calculated from whitened spectrogram and entropy calculated from whitened group delay phase spectrum on single species MLSP data. Here group delay phase spectrum based method is outperforming spectrogram based method for almost all the operating points. 
+The second dataset used is a subset of MLSP bird classification challenge 2013 dataset \cite{data2}. The data is recorded in more challenging conditions and recordings have low signal to noise ratio. Twenty Five files of ten seconds length are used to evaluate the proposed method.  Figure \ref{fig:ROCdata2} shows ROC curves comparing performance of methods based on entropy calculated from whitened APDGF spectrum and whitened power spectrum. Here group delay phase spectrum based method is outperforming spectrogram based method for almost all the operating points. 
 
  
 \begin{figure}[!ht]
 	\centering
-	\includegraphics[width=0.6\textwidth,height=7cm] {ROC_gr_delay__VS_spectrogram_data2.eps}
+	\includegraphics[width=0.5\textwidth,height=7cm] {gd_2.eps}
 	\caption{ROC curves comparing performance of methods based on white phase spectrum and white power spectrum on MLSP 2013 single species dataset }   
+	\label{fig:ROCdata2}
 \end{figure} 
+
+
+
 
  \subsection{Model Order  vs AIC}
  
  
- To establish the optimum model order, Akaike Information criteria (AIC)  \cite{makhoul} is used. Figure 5 depicts the AIC for different model orders for Cassin's Vireo phrases.  
+ To establish the optimum model order, Akaike Information criteria (AIC)  \cite{makhoul} is used. Figure \ref{fig:AIC_cassins} depicts the AIC for different model orders for Cassin's Vireo phrases.  
  
  
  \begin{figure}[!ht]
 	\centering
-	\includegraphics[width=0.5\textwidth,height=6cm] {cassin_aic.eps}
+	\includegraphics[width=0.5\textwidth,height=6cm] {cassins_AIC.eps}
 	\caption{AIC vs model order for Cassin's Vireo }   
+	\label{fig:AIC_cassins}
 \end{figure} 
 
  
  
-Figure 6 depicts the AIC for different model orders for three different bird species i.e. Cuckoo, Great Barbet and Laughing Thresh. 
+Figure \ref{fig:AIC_3} depicts the AIC for different model orders for three different bird species i.e. Cuckoo, Great Barbet and Laughing Thresh. 
 
  \begin{figure}[!ht]
 	\centering
-	\includegraphics[width=0.5\textwidth,height=6cm] {AIC_species3.eps}
+	\includegraphics[width=0.5\textwidth,height=7 cm] {model_order_vs_AIC.eps}
 	\caption{AIC vs model order for three different species }   
+	\label{fig:AIC_3}
 \end{figure} 
 
 
