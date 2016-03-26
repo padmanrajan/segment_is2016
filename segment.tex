@@ -239,7 +239,7 @@ The drop in entropy at the presence of bird vocalizations makes it possible to d
 To whiten the APGDF spectrum ($\uptau(n,f)$), the covariance matrix of mean subtracted APGDF spectrum is calculated. The eigen values matrix (\textit{S}) and eigen vectors matrix (\textit{U}) of this covariance matrix are calculated. The white APGDF spectrum matrix ($\uptau_W(n,f)$) is calculated using the following expression:
 
 \begin{equation}
-\uptau_W(n,f)=diag \bigg(  \frac{1}{\sqrt{diag(S)+\epsilon}} \bigg )*U'*\uptau(n,f),
+\uptau_W(n,f)=\text{diag} \bigg(  \frac{1}{\sqrt{diag(S)+\epsilon}} \bigg )*U'*\uptau(n,f),
 \end{equation}
 
 
