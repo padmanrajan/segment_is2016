@@ -205,6 +205,7 @@ ignored by taking the absolute value. Henceforth, APGDF means positive APGDF.
 $fmin$ to $fmax$ is considered over the APGDF vectors. As in \cite{wang2013},
 the entropy of this window is estimated using the expression
 \begin{equation}
+\label{eq:2}
 h_{k}=-\sum_{n=kT+1}^{kT+w}\sum_{f=fmin}^{fmax} \uptau_N(n,f) \ln \uptau_N(n,f),
 \end{equation}
 where $T$ is the time-frequency window shift and $\uptau_N(n,f)$ is normalized APGDF. $\uptau_N(n,f)$ is estimated using the expression 
@@ -293,7 +294,7 @@ The frame length of 20 ms and increment of
 The whitening is applied to APGDF before calculating entropy.
 A time-frequency window of length
 $w$=138.8 ms is used along with increment of $T$ = 15 ms to estimate the
-entropy.  The frequency range of the time-frequency window is set from $f_{min}$=1.5 kHz to $f_{max}$=7 kHz \cite{wang2013}.  
+entropy (see equation \ref{eq:2}).  The frequency range of the time-frequency window is set from $f_{min}$=1.5 kHz to $f_{max}$=7 kHz \cite{wang2013}.  
 
 Receiver operating characteristic (ROC) curves are used to analyze the performance of both the techniques. True positive rate and false alarm rate are calculated using following equations:
 
