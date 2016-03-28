@@ -121,8 +121,7 @@ KL-divergence based segmentation method is proposed in \cite{Lakshmi}.
 KL-divergence between normalized power spectral density of a frame and uniform
 distribution is computed (XXX unclear.) Local minima of KL-divergence act as
 change points for bird vocalizations. In \cite{Neal}, time-frequency based
-segmentation using a random forest classifier is proposed to segment the
-syllables (XXX what syllables?) in a noisy recording. 
+segmentation using a random forest classifier is proposed to  segment the bird vocalizations from a noisy audio recording. 
 
 
 
@@ -162,6 +161,7 @@ drongo.
 
 The vocal tract is represented in the LP model as
 \begin{equation}
+\label{eq:1}
 H(\omega) = \frac{G}{1-\sum_{k=1}^{P} a(k) e^{-j \omega k}},
 \end{equation}
 where the predictor model order is $P$, $G$ represents the gain and $a(k)$ are
@@ -180,7 +180,7 @@ APGDF.
 
 \includegraphics[width=0.5\textwidth,height=7cm]
 {apgd.eps}
-\caption{XXX its not time, its samples A frame of audio signal (top panel), corresponding LP
+\caption{ A frame of audio signal (top panel), corresponding LP
 magnitude spectrum superimposed on DFT magnitude spectrum (middle panel) and
 all-pole group delay function (bottom panel)  }
 \label{fig:all-pole}
@@ -214,18 +214,25 @@ value. Henceforth, APGDF means positive APGDF.  A sliding time-frequency window
 of width $w$ frames and frequency range $fmin$ to $fmax$ is considered over the
 APGDF vectors. As in \cite{wang2013}, the entropy of this window is estimated
 using the expression
+
+
+
+
 \begin{equation}
 \label{eq:2}
-h_{k}=-\sum_{n=kT+1}^{kT+w}\sum_{f=fmin}^{fmax} \uptau_N(n,f) \ln \uptau_N(n,f),
+ h_{k}=-\sum_{n=kT+1}^{kT+w}\sum_{f=fmin}^{fmax} \uptau_N(n,f) \ln \uptau_N(n,f),
 \end{equation}
 where $T$ is the time-frequency window shift and $\uptau_N(n,f)$ is normalized
 APGDF. $\uptau_N(n,f)$ is estimated using the expression 
+
+
+    
 \begin{equation}
+\label{eq:3}
 \uptau_N(n,f)=\frac {\uptau(n,f)}
 {\sum_{n=kT+1}^{kT+w}\sum_{f=fmin}^{fmax} \uptau(n,f)},
 \end{equation}
-where $\uptau(n,f)$ is the positive APGDF at frame $n$ and frequency
-\textit{f}. XXX Change this!! Put in math mode.
+where $\uptau(n,f)$ is the APGDF at frame $n$ and frequency $f$.
 
 The entropy calculated from the time-frequency window is less susceptible to sudden
 changes in the background as compared to the entropy calculated at each time
@@ -267,14 +274,14 @@ APGDF is estimated. The eigenvalue matrix $S$ and the eigenvector matrix
 $U$ of $C$ are determined. The whitened APGDF
 ($\uptau_W(n,f)$) is calculated as:
 \begin{equation}
-\uptau_W(n,f)=\text{diag} \bigg(  \frac{1}{\sqrt{\text{diag(S)}+\epsilon}} 
-\bigg )\times \text{U'} \times \uptau(n,f),
+\label{eq:4}
+\uptau_W(n,f)=\text{diag} \bigg(  \frac{1}{\sqrt{\text{diag($S$)}+\epsilon}} 
+\bigg )\times \text{$U'$} \times \uptau(n,f),
 \end{equation}
-XXX There is something wrong in this equation
 
 Therefore, the whitened APGDF is used to calculate the entropy. The difference
 between entropy calculated from the original APGDF and the whitened APGDF is
-evident in Figure \ref{fig:entropy}.
+evident in figure \ref{fig:entropy}.
 
 \begin{figure}[h]
 \centering
@@ -309,9 +316,9 @@ are used as the ground truth for segmentation.
 The MLSP 2013 dataset \cite{data2} is much nosier and includes wind and rain in
 the background. The recordings are done for over two years at 13 different
 locations. Twenty five files of ten seconds length are selected from the data to
-evaluate the proposed method. XXX how much percentage is active and inactive?
+evaluate the proposed method.  
 Manual annotations are done to mark the presence
-of bird vocalizations in these audio files.  
+of bird vocalizations in these audio files. The audio files contain 60 bird phrases which occupy 13.35\% of the total time of recordings.  
 
 
 The proposed algorithm is compared with a modified version of technique proposed
@@ -323,11 +330,11 @@ from the APGDF.
  
 A frame length of 20 ms and increment of 5 ms is used to perform short-time
 processing. APGDF computed on each frame is whitened before computing the
-entropy as given in Equation XXX. A time-frequency window of length $w$=138.8 ms
+entropy as given in equation \ref{eq:4}. A time-frequency window of length $w$=138.8 ms
 is used along with increment of $T$ = 15 ms to estimate the entropy (see
 equation \ref{eq:2}). For the Cassin's vireo data, the frequency range of the
 time-frequency window is set from $f_{min}$=1.5 kHz to $f_{max}$=7 kHz
-\cite{wang2013}. XXX what about the other dataset?
+\cite{wang2013}. The entropy estimation for also dataset 2 is also restricted to the same frequency range i.e. from $f_{min}$=1.5 kHz to $f_{max}$=7 kHz. 
 
 Receiver operating characteristic (ROC) curves are used to analyze the
 performance of both techniques. True positive rate and false alarm rate are
@@ -341,14 +348,14 @@ calculated as:
 \text{FAR} (\%)=\frac{\text{Wrongly Classified As Call Frames}} {\text{Total Background Frames}} \times 100 
 \end{equation}
 
-Figures \ref{fig:ROCdata1} and XXX depicts ROC curves comparing performance of
-the two methods on the respective datasets. It is clear from  figure
-\ref{fig:ROCdata1} ans XXX that the APGDF-based technique outperforms the power
-spectrum based method at almost all operating points.
+Figures \ref{fig:ROCdata1} and  \ref{fig:ROCdata2} depict ROC curves comparing performance of
+the two methods on the respective datasets. It is clear from  figures
+\ref{fig:ROCdata1} and  \ref{fig:ROCdata2} that the APGDF-based technique outperforms the power
+spectrum based method at most of the  operating points.
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.5\textwidth,height=7cm]{ROC_gr_delay_5_VS_spectrogram.eps}
+\includegraphics[width=0.5\textwidth,height=7cm]{gd1.eps}
 \caption{ROC  curves  comparing  performance  of  methods based on APGDF and 
 spectrogram on Cassin's Vireo dataset.}
 \label{fig:ROCdata1}
@@ -356,7 +363,7 @@ spectrogram on Cassin's Vireo dataset.}
  
 \begin{figure}[!ht]
 	\centering
-	\includegraphics[width=0.5\textwidth,height=7cm] {ROC_gr_delay_10_VS_spectrogram_data2.eps}
+	\includegraphics[width=0.5\textwidth,height=7cm] {gd2.eps}
 	\caption{ROC curves comparing performance of methods based on APGDF and spectrogram on MLSP dataset }   
 	\label{fig:ROCdata2}
 \end{figure} 
