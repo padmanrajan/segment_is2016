@@ -211,7 +211,7 @@ the audio recording. Unlike the power spectrum, the APGDF can be negative.
 Since here we are interested only in the magnitudes and locations of the
 frequency components, the sign of the APGDF is ignored by taking the absolute
 value. Henceforth, APGDF means positive APGDF.  A sliding time-frequency window
-of width $w$ frames and frequency range $fmin$ to $fmax$ is considered over the
+of width $w$ frames and frequency range $f_{\min}$ to $f_{\max}$ is considered over the
 APGDF vectors. As in \cite{wang2013}, the entropy of this window is estimated
 using the expression
 
@@ -220,7 +220,7 @@ using the expression
 
 \begin{equation}
 \label{eq:2}
- h_{k}=-\sum_{n=kT+1}^{kT+w}\sum_{f=fmin}^{fmax} \uptau_N(n,f) \ln \uptau_N(n,f),
+ h_{k}=-\sum_{n=kT+1}^{kT+w}\sum_{f=f_{\min}}^{f_{\max}} \uptau_N(n,f) \ln \uptau_N(n,f),
 \end{equation}
 where $T$ is the time-frequency window shift and $\uptau_N(n,f)$ is normalized
 APGDF. $\uptau_N(n,f)$ is estimated using the expression 
@@ -334,8 +334,8 @@ processing. APGDF computed on each frame is whitened before computing the
 entropy as given in equation \ref{eq:4}. A time-frequency window of length $w$=138.8 ms
 is used along with increment of $T$ = 15 ms to estimate the entropy (see
 equation \ref{eq:2}). For the Cassin's vireo data, the frequency range of the
-time-frequency window is set from $f_{min}$=1.5 kHz to $f_{max}$=7 kHz
-\cite{wang2013}. The entropy estimation for also dataset 2 is also restricted to the same frequency range i.e. from $f_{min}$=1.5 kHz to $f_{max}$=7 kHz. 
+time-frequency window is set from $f_{\min}$=1.5 kHz to $f_{\max}$=7 kHz
+\cite{wang2013}. The entropy estimation for also dataset 2 is also restricted to the same frequency range i.e. from $f_{\min}$=1.5 kHz to $f_{\max}$=7 kHz. 
 
 Receiver operating characteristic (ROC) curves are used to analyze the
 performance of both techniques. True positive rate and false alarm rate are
@@ -380,7 +380,7 @@ spectrogram on Cassin's Vireo dataset.}
  
  \begin{figure}[!ht]
 	\centering
-	\includegraphics[width=0.5\textwidth,height=6cm] {cassins_AIC.eps}
+	\includegraphics[width=0.5\textwidth,height=7cm] {cassins_AIC.eps}
 	\caption{AIC vs model order for Cassin's Vireo }   
 	\label{fig:AIC_cassins}
 \end{figure} 
@@ -397,6 +397,15 @@ Figure \ref{fig:AIC_3} depicts the AIC for different model orders for three diff
 \end{figure} 
 
 
+ Figure \ref{fig:species_4} depicts the AIC for different model orders for four different bird species i.e. Indian Nightjar, Emerald Dove, Canary Flycatcher and Sarus Crane . 
+ 
+ 
+ \begin{figure}[!ht]
+	\centering
+	\includegraphics[width=0.5\textwidth,height=7 cm] {species_4.eps}
+	\caption{AIC vs model order for four different species }   
+	\label{fig:species_4}
+\end{figure} 
  
  
  
