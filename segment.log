@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2015.12.7)  30 MAR 2016 18:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2015.12.7)  30 MAR 2016 22:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -244,26 +244,26 @@ Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 ) (./segment.aux)
 \openout1 = `segment.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 52.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 52.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 53.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 53.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 52.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 53.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
@@ -330,120 +330,117 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 54.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 55.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 54.
-LaTeX Font Info:    Try loading font information for U+msa on input line 54.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 55.
+LaTeX Font Info:    Try loading font information for U+msa on input line 55.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 54.
+LaTeX Font Info:    Try loading font information for U+msb on input line 55.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 54.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 55.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 56.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 57.
  [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
 
 ]
 Package epstopdf Info: Source file: <apgd.eps>
-(epstopdf)                    date: 2016-03-29 09:31:37
-(epstopdf)                    size: 29135 bytes
+(epstopdf)                    date: 2016-03-30 21:38:40
+(epstopdf)                    size: 39525 bytes
 (epstopdf)             Output file: <apgd-eps-converted-to.pdf>
-(epstopdf)                    date: 2016-03-29 09:31:48
-(epstopdf)                    size: 20948 bytes
+(epstopdf)                    date: 2016-03-30 21:42:02
+(epstopdf)                    size: 23605 bytes
 (epstopdf)             Command: <repstopdf --outfile=apgd-eps-converted-to.pdf 
 apgd.eps>
-(epstopdf)             \includegraphics on input line 191.
+(epstopdf)             \includegraphics on input line 207.
 Package epstopdf Info: Output file is already uptodate.
 
-<apgd-eps-converted-to.pdf, id=17, 485.815pt x 326.21875pt>
+<apgd-eps-converted-to.pdf, id=16, 569.12625pt x 432.61626pt>
 File: apgd-eps-converted-to.pdf Graphic file (type pdf)
 
 <use apgd-eps-converted-to.pdf>
-Package pdftex.def Info: apgd-eps-converted-to.pdf used on input line 191.
-(pdftex.def)             Requested size: 241.84685pt x 199.1773pt.
+Package pdftex.def Info: apgd-eps-converted-to.pdf used on input line 207.
+(pdftex.def)             Requested size: 241.85374pt x 199.17091pt.
 
-Overfull \hbox (14.22481pt too wide) in paragraph at lines 191--194
+Overfull \hbox (14.2317pt too wide) in paragraph at lines 207--210
 [][] 
  []
 
+[2 <./apgd-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <Entropy_gd_white_non_white.eps>
-(epstopdf)                    date: 2016-03-27 11:24:54
-(epstopdf)                    size: 20961 bytes
+(epstopdf)                    date: 2016-03-30 21:38:39
+(epstopdf)                    size: 21019 bytes
 (epstopdf)             Output file: <Entropy_gd_white_non_white-eps-converted-t
 o.pdf>
-(epstopdf)                    date: 2016-03-27 11:30:14
-(epstopdf)                    size: 14639 bytes
+(epstopdf)                    date: 2016-03-30 21:42:03
+(epstopdf)                    size: 14744 bytes
 (epstopdf)             Command: <repstopdf --outfile=Entropy_gd_white_non_white
 -eps-converted-to.pdf Entropy_gd_white_non_white.eps>
-(epstopdf)             \includegraphics on input line 301.
+(epstopdf)             \includegraphics on input line 310.
 Package epstopdf Info: Output file is already uptodate.
 
-<Entropy_gd_white_non_white-eps-converted-to.pdf, id=18, 465.74pt x 359.3425pt>
+<Entropy_gd_white_non_white-eps-converted-to.pdf, id=29, 569.12625pt x 432.6162
+6pt>
 File: Entropy_gd_white_non_white-eps-converted-to.pdf Graphic file (type pdf)
-<use Entropy_gd_white_non_white-eps-converted-to.pdf>
+ <use Entropy_gd_white_non_white-eps-converted-to.pdf>
 Package pdftex.def Info: Entropy_gd_white_non_white-eps-converted-to.pdf used o
-n input line 301.
-(pdftex.def)             Requested size: 241.84508pt x 213.40294pt.
+n input line 310.
+(pdftex.def)             Requested size: 241.85374pt x 213.39647pt.
 
-Overfull \hbox (14.22304pt too wide) in paragraph at lines 301--302
+Overfull \hbox (14.2317pt too wide) in paragraph at lines 310--312
  [][] 
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[2 <./apgd-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <gd1.eps>
-(epstopdf)                    date: 2016-03-29 09:31:37
-(epstopdf)                    size: 18032 bytes
+(epstopdf)                    date: 2016-03-30 20:31:47
+(epstopdf)                    size: 20822 bytes
 (epstopdf)             Output file: <gd1-eps-converted-to.pdf>
-(epstopdf)                    date: 2016-03-29 09:31:49
-(epstopdf)                    size: 8399 bytes
+(epstopdf)                    date: 2016-03-30 20:32:42
+(epstopdf)                    size: 8509 bytes
 (epstopdf)             Command: <repstopdf --outfile=gd1-eps-converted-to.pdf g
 d1.eps>
-(epstopdf)             \includegraphics on input line 375.
+(epstopdf)             \includegraphics on input line 385.
 Package epstopdf Info: Output file is already uptodate.
-
-<gd1-eps-converted-to.pdf, id=31, 485.815pt x 329.23pt>
+<gd1-eps-converted-to.pdf, id=30, 569.12625pt x 432.61626pt>
 File: gd1-eps-converted-to.pdf Graphic file (type pdf)
 
 <use gd1-eps-converted-to.pdf>
-Package pdftex.def Info: gd1-eps-converted-to.pdf used on input line 375.
-(pdftex.def)             Requested size: 241.84685pt x 199.1722pt.
+Package pdftex.def Info: gd1-eps-converted-to.pdf used on input line 385.
+(pdftex.def)             Requested size: 241.85374pt x 199.17091pt.
 
-Overfull \hbox (14.22481pt too wide) in paragraph at lines 375--377
+Overfull \hbox (14.2317pt too wide) in paragraph at lines 385--387
  [][] 
  []
 
 Package epstopdf Info: Source file: <gd2.eps>
-(epstopdf)                    date: 2016-03-29 09:31:37
-(epstopdf)                    size: 15127 bytes
+(epstopdf)                    date: 2016-03-30 20:31:47
+(epstopdf)                    size: 20891 bytes
 (epstopdf)             Output file: <gd2-eps-converted-to.pdf>
-(epstopdf)                    date: 2016-03-29 09:31:49
-(epstopdf)                    size: 7900 bytes
+(epstopdf)                    date: 2016-03-30 20:32:42
+(epstopdf)                    size: 8620 bytes
 (epstopdf)             Command: <repstopdf --outfile=gd2-eps-converted-to.pdf g
 d2.eps>
-(epstopdf)             \includegraphics on input line 383.
+(epstopdf)             \includegraphics on input line 393.
 Package epstopdf Info: Output file is already uptodate.
-<gd2-eps-converted-to.pdf, id=32, 422.57875pt x 276.03125pt>
+<gd2-eps-converted-to.pdf, id=31, 569.12625pt x 432.61626pt>
 File: gd2-eps-converted-to.pdf Graphic file (type pdf)
 
 <use gd2-eps-converted-to.pdf>
-Package pdftex.def Info: gd2-eps-converted-to.pdf used on input line 383.
-(pdftex.def)             Requested size: 241.85248pt x 199.17616pt.
+Package pdftex.def Info: gd2-eps-converted-to.pdf used on input line 393.
+(pdftex.def)             Requested size: 241.85374pt x 199.17091pt.
 
-Overfull \hbox (14.23044pt too wide) in paragraph at lines 383--385
+Overfull \hbox (14.2317pt too wide) in paragraph at lines 393--395
  [][] 
  []
 
@@ -457,17 +454,17 @@ Package epstopdf Info: Source file: <cassins_AIC.eps>
 (epstopdf)                    size: 6329 bytes
 (epstopdf)             Command: <repstopdf --outfile=cassins_AIC-eps-converted-
 to.pdf cassins_AIC.eps>
-(epstopdf)             \includegraphics on input line 421.
+(epstopdf)             \includegraphics on input line 442.
 Package epstopdf Info: Output file is already uptodate.
- <cassins_AIC-eps-converted-to.pdf, id=46, 465.74pt x 359.3425pt>
+ <cassins_AIC-eps-converted-to.pdf, id=45, 465.74pt x 359.3425pt>
 File: cassins_AIC-eps-converted-to.pdf Graphic file (type pdf)
 
 <use cassins_AIC-eps-converted-to.pdf>
-Package pdftex.def Info: cassins_AIC-eps-converted-to.pdf used on input line 42
-1.
+Package pdftex.def Info: cassins_AIC-eps-converted-to.pdf used on input line 44
+2.
 (pdftex.def)             Requested size: 241.84508pt x 199.17426pt.
 
-Overfull \hbox (14.22304pt too wide) in paragraph at lines 421--422
+Overfull \hbox (14.22304pt too wide) in paragraph at lines 442--443
  [][] 
  []
 
@@ -479,25 +476,22 @@ Package epstopdf Info: Source file: <species_4.eps>
 (epstopdf)                    size: 13648 bytes
 (epstopdf)             Command: <repstopdf --outfile=species_4-eps-converted-to
 .pdf species_4.eps>
-(epstopdf)             \includegraphics on input line 446.
+(epstopdf)             \includegraphics on input line 467.
 Package epstopdf Info: Output file is already uptodate.
-<species_4-eps-converted-to.pdf, id=47, 569.12625pt x 432.61626pt>
+<species_4-eps-converted-to.pdf, id=46, 569.12625pt x 432.61626pt>
 File: species_4-eps-converted-to.pdf Graphic file (type pdf)
 
 <use species_4-eps-converted-to.pdf>
-Package pdftex.def Info: species_4-eps-converted-to.pdf used on input line 446.
+Package pdftex.def Info: species_4-eps-converted-to.pdf used on input line 467.
 
 (pdftex.def)             Requested size: 241.85374pt x 199.17091pt.
 
-Overfull \hbox (14.2317pt too wide) in paragraph at lines 446--447
+Overfull \hbox (14.2317pt too wide) in paragraph at lines 467--468
  [][] 
  []
 
-
-Underfull \vbox (badness 7397) has occurred while \output is active []
-
- [4 <./gd2-eps-converted-to.pdf> <./cassins_AIC-eps-converted-to.pdf> <./specie
-s_4-eps-converted-to.pdf>] (./segment.bbl
+[4 <./gd2-eps-converted-to.pdf> <./cassins_AIC-eps-converted-to.pdf> <./species
+_4-eps-converted-to.pdf>] (./segment.bbl
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 2.
 Missing character: There is no Ã in font ptmr7t!
@@ -510,31 +504,30 @@ Underfull \hbox (badness 2269) in paragraph at lines 136--138
 
 ) [5] (./segment.aux) ) 
 Here is how much of TeX's memory you used:
- 3446 strings out of 495020
- 45936 string characters out of 6181324
- 101777 words of memory out of 5000000
- 6556 multiletter control sequences out of 15000+600000
+ 3451 strings out of 495020
+ 46011 string characters out of 6181324
+ 102883 words of memory out of 5000000
+ 6561 multiletter control sequences out of 15000+600000
  33229 words of font info for 84 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 38i,8n,26p,289b,323s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,8n,26p,290b,323s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.e
 nc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb
 ></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/
 share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-euler/eurm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on segment.pdf (5 pages, 214717 bytes).
+t/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/euler/eurm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier
+/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on segment.pdf (5 pages, 211633 bytes).
 PDF statistics:
- 116 PDF objects out of 1000 (max. 8388607)
- 82 compressed objects within 1 object stream
+ 112 PDF objects out of 1000 (max. 8388607)
+ 79 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  31 words of extra memory for PDF output out of 10000 (max. 10000000)
 

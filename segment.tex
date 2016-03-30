@@ -34,11 +34,12 @@
 
 \makeatletter
 \def\name#1{\gdef\@name{#1\\}}
-\makeatother \name{{\em Author Name$^1$, Co-author Name$^2$}}
+\makeatother \name{{\em Anshul Thakur, Padmanabhan Rajan}}
 
-\address{$^1$Author Affiliation \\
-  $^2$Co-author Affiliation \\
-  {\small \tt author@university.edu, coauthor@company.com}
+\address{School of Computing and Electrical Engineering\\
+ Indian Institute of Technology Mandi \\
+ Himachal Pradesh, India \\
+  {\small \tt anshul\_thakur@students.iitmandi.ac.in, padman@iitmandi.ac.in}
 }
 
 %\twoauthors{Karen Sp\"{a}rck Jones.}{Department of Speech and Hearing \\
@@ -124,9 +125,17 @@ distribution is computed. The more KL-divergence corresponds to less entropy and
 vice-versa. Local minima of KL-divergence act as change points for bird
 vocalizations. In \cite{Neal}, time-frequency based segmentation using a random
 forest classifier is proposed to  segment the bird vocalizations from a noisy
-audio recording. 
+audio recording.
+
+The rest of this paper is organised as follows. An overview of the use of group
+delay functions from all-pole models is presented in section \ref{sec:gdReview}.
+The proposed entropy-based segmentation algorithm is described in section
+\ref{sec:entropyAlgo}. The experimental evaluation of the algorithm is described
+in section \ref{sec:eval}. This section also touches upon the topic of model
+order selection. Finally we conclude in section \ref{sec:conclusion}.
 
 \section{Utilising Fourier transform phase}
+\label{sec:gdReview}
 
 Commonly used features for processing speech and audio signals are based on the
 magnitude spectrum of the short-term Fourier transform. The phase spectrum has
@@ -155,7 +164,9 @@ proposed in the literature to overcome the effects due to these artifacts
 overcome this difficulty is to model the vocal tract as an all-pole filter,
 hence avoiding the zeros altogether. Such a technique derived using linear
 prediction (LP) analysis was used in the detection of formants in human speech
-\cite{yegnaFormant}. 
+\cite{yegnaFormant}. More recently, feature vectors derived from such a representation 
+were used in speech \cite{drugman} and speaker recognition \cite{padman}. 
+
 
 The vocal tract is represented in the LP model as
 \begin{equation}
@@ -178,27 +189,29 @@ which is obtained by replacing the power spectrum in the denominator of equation
 \ref{eq:apGdelayFormula}, thus retaining the formant structure in the group
 delay function.
 
-Figure \ref{fig:all-pole} shows the magnitude spectrum, LP
-spectrum and APGDF derived from a 20 ms call of Cassins vireo (\textit{Vireo
-cassinii.}) As can be seen, the APGDF emphasises the formants, as compared to the
-DFT magnitude spectrum or the LP magnitude spectrum. Two peaks which are merged
-in the magnitude spectra around the 100th frequency bin appear distinctly in the
-APGDF.
+Figure \ref{fig:all-pole} shows the DFT magnitude spectrum, LP magnitude
+spectrum (second panel), and the APGDF (bottom panel) derived from a 20 ms call 
+of Cassins vireo (\textit{Vireo cassinii.}) As can be seen, the group delay
+function emphasises the formants present with fairly high resolution, when
+compared to the magnitude spectra.
+%The group delay function from the LP model is quite smooth, but its
+%computation requires the explict unwrapping of the phase.
+%As can be seen, the
+%group delay representations emphasises the formants, as compared to the
+%DFT magnitude spectrum or the LP magnitude spectrum. Two peaks which are merged
+%in the magnitude spectra around the 100th frequency bin appear distinctly in the
+%APGDF.
 
 \begin{figure}[h]
-
 \includegraphics[width=0.5\textwidth,height=7cm]
 {apgd.eps}
 \caption{ A frame of audio signal (top panel), corresponding LP
 magnitude spectrum superimposed on DFT magnitude spectrum (middle panel) and
-all-pole group delay function (bottom panel)  }
+all-pole group delay function (bottom panel.)  }
 \label{fig:all-pole}
 \end{figure}
 
 
-Recently, feature vectors
-derived from such a representation were used in speech \cite{drugman} and speaker
-recognition \cite{padman}. 
 
 
 There is strong evidence that birds use their vocal tract as a selective filter
@@ -221,6 +234,7 @@ drongo.
 %developed for human speech, th
 
 \section{Entropy-based segmentation of birdsong}
+\label{sec:entropyAlgo}
 
 Computing the APGDF for every frame enables good time-frequency resolution of
 the audio recording. Unlike the power spectrum, the APGDF can be negative.
@@ -239,7 +253,7 @@ APGDF. $\uptau_N(n,f)$ is estimated using the expression
 \begin{equation}
 \label{eq:3}
 \uptau_N(n,f)=\frac {\uptau_A(n,f)}
-{\sum_{n=kT+1}^{kT+w}\sum_{f=fmin}^{fmax} \uptau_A(n,f)},
+{\sum_{n=kT+1}^{kT+w}\sum_{f=f_{\min}}^{f_{\max}} \uptau_A(n,f)},
 \end{equation}
 where $\uptau_A(n,f)$ is the APGDF at frame $n$ and frequency $f$.
 
@@ -263,10 +277,6 @@ entropy.
 %\end{figure}
 
 
-
- 
-
-
 \subsection{Whitening the APGDF before entropy calculation}
 
 The drop in entropy during the presence of bird vocalizations makes it possible
@@ -288,18 +298,18 @@ $U$ of $C$ are determined. The whitened APGDF
 \begin{equation}
 \label{eq:4}
 \uptau_W=\text{diag} \bigg(  \frac{1}{\sqrt{\text{diag($S$)}+\epsilon}} 
-\bigg )\times \text{$U^T$} \times \uptau_A
+\bigg )\times \text{$U$} \times \uptau_A
 \end{equation}
 
-Here $\epsilon$ is a negligible positive number added to prevent division by zero. 
- The difference
-between entropy calculated from the original APGDF and the whitened APGDF is
-evident in figure \ref{fig:entropy}.
+Here $\epsilon$ is a negligible positive number added to prevent division by
+zero.  The difference between entropy calculated from the original APGDF and the
+whitened APGDF is evident in figure \ref{fig:entropy}.
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.5\textwidth,height=7.5cm]{Entropy_gd_white_non_white.eps}
-\caption{ Entropy calculated from APGDF (Uppen Panel) and entropy calculated using white APGDF (Lower Panel).}
+\caption{ Entropy calculated from normal APGDF (upper panel) and from whitened
+APGDF (lower panel).}
 \label{fig:entropy}
 \end{figure}
 
@@ -314,7 +324,7 @@ be tracked back to get the start and end time of the vocalization in the
 recording.     
    
 \section{Performance analysis}
-
+\label{sec:eval}
 
 The proposed algorithm is evaluated on two datasets. The first consists of
 recordings of a single species, the Cassin's vireo; the second consists of
@@ -342,7 +352,7 @@ entropy estimated from the power spectrum is compared to the entropy estimated
 from the APGDF.
  
 A frame length of 20 ms and increment of 5 ms is used to perform short-time
-processing. APGDF computed on each frame is whitened before computing the
+processing, using a Hamming window. APGDF computed on each frame is whitened before computing the
 entropy as given in equation \ref{eq:4}. A time-frequency window of length $w$=138.8 ms
 is used along with a shift of $T$ = 15 ms to estimate the entropy (see
 equation \ref{eq:2}). The frequency range of the
@@ -374,7 +384,7 @@ points.
 \centering
 \includegraphics[width=0.5\textwidth,height=7cm]{gd1.eps}
 \caption{ROC  curves  comparing  performance  of  methods based on APGDF and 
-spectrogram on Cassin's Vireo dataset.}
+spectrogram on Cassin's vireo dataset.}
 \label{fig:ROCdata1}
 \end{figure}
  
@@ -388,9 +398,9 @@ spectrogram on Cassin's Vireo dataset.}
 
 It is to be noted that the method in \cite{wang2013} utilises a sophisticated
 Bayesian change-point detection technique. When compared to the simple
-thresholding technique used in our evaluation, their method acheives a better
+thresholding technique used in our evaluation, their method achieves a better
 true positive rate at 20\% false alarm rate (see figure 2 in \cite{wang2013}).
-Replacing thresholding with a more relaiable change-point detection technique 
+Replacing thresholding with a more reliable change-point detection technique 
 is expected to bring improvements while using the APGDF-based technique.
 
 \subsection{Determining the model order for LP analysis}
@@ -400,26 +410,37 @@ to know the optimum number of poles to be used. In \cite{makhoul}, the Akaike
 information criterion (AIC) is used to determine the optimal model order for the
 LP filter. Assuming a Gaussian probability distribution for the signal, the
 criterion approximated as
+
 \begin{equation}
-I(p) = \log V_p + 
+I(p)=\log V_p+\frac{2p}{N_e}. 
 \end{equation}
-where $V_p$ is
-XXX fill this up, and mention what is $N_e$.
+
+Here $V_p$ is the normalized error, defined as the ratio of residual error of the
+LP model of order $p$, to the energy of signal. $N_e$ is the effective number of data points
+in the signal.  $N_e$ compensates for the loss during windowing. The ratio of
+the energy under the analysis window (Hamming window is used here) relative to
+that of a rectangular window gives effective width of the window. For the
+Hamming window, $N_e$ is 40\% of window length \cite{makhoul}.
 
 For the Cassin's vireo, the AIC is computed for various model orders. The AIC
-curve reaches a minimum around $p$=10 and then increases with a gentle slope. In
-practice, a model order between 5 and 10 is well suited for this species.
-To investigate if this is species specific, a similar study is performed for
-four species from four different families. These are: Indian nightjar
-(\textit{Caprimulgus asiaticus asiaticus} from the family Caprimulgidae, emerald
-dove (\textit{Chalcophaps indica}) from the family Columbidae, abd XXX XXX.
-The model order versus AIC plots given in figure XXX also indicate that the same value
-of $p$ (between 5 and 10) is suitable accross multiple species.
+curve reaches a minimum around $p$=10 and then increases with a gentle slope.
+This minima represents the model with the best fit. In
+practice, a model order between 5 and 10 is well suited for this species.  To
+investigate if this is species specific, a similar study is performed for four
+species from four different families. These are: Indian nightjar
+(\textit{Caprimulgus asiaticu}) from the family Caprimulgidae, emerald dove
+(\textit{Chalcophaps indica}) from the family Columbidae, grey- headed canary
+flycatcher (\textit{Culicicapa ceylonensis}) from the family Stenostiridae and
+sarus crane (\textit{Grus antigone}) from the family Gruidae.  The model order
+versus AIC plots given in figure \ref{fig:species_4} also indicate that the same
+value of $p$ (between 5 and 10) is suitable accross multiple species. In
+practice, we observed that any model order between this range resulted in
+similar segmentation performance.
 
  \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=0.5\textwidth,height=7cm] {cassins_AIC.eps}
-	\caption{AIC vs model order for Cassin's Vireo }   
+	\caption{AIC vs model order for Cassin's vireo.}   
 	\label{fig:AIC_cassins}
 \end{figure} 
 
@@ -435,11 +456,11 @@ of $p$ (between 5 and 10) is suitable accross multiple species.
 %	\label{fig:AIC_3}
 %\end{figure} 
 
-
+\begin{comment}
  Figure \ref{fig:species_4} depicts the AIC for different model orders for four
- different bird species i.e. Indian Nightjar, Emerald Dove, Canary Flycatcher
- and Sarus Crane . 
- 
+ different bird species i.e. Indian nightjar, emerald dove, canary flycatcher
+ and sarus crane. 
+ \end{comment}
  
  \begin{figure}[!ht]
 	\centering
@@ -476,12 +497,14 @@ of $p$ (between 5 and 10) is suitable accross multiple species.
 
  
 \section{Conclusion}
+\label{sec:conclusion}
+
 In this paper, we explored an entropy-based birdcall segmentation technique. The
 method utilises information from the phase spectrum of the short term Fourier
 transform. To avoid the difficulty of unwrapping the phase, the group delay
 function is utilised. An all-pole filter using LP analysis is used to model the
 vocal tract spectrum while estimating the group delay function, resulting in the
-APGDF represntation. The APGDF is whitened before estimating the entropy, and
+APGDF representation. The APGDF is whitened before estimating the entropy, and
 extrema-based thresholding is performed to distinguish call periods from the
 background. When compared to the entropy estimated from the power spectrum, the
 entropy from the APGDF resulted in better segmentation accuracy.
