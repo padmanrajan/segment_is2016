@@ -118,10 +118,10 @@ Many studies on birdcalls have used manual segmentation \cite{Trifa} \cite{Lee}
 \cite{Kaewtip}. Time domain segmentation using energy has been used in many
 studies \cite{Harma} \cite{Somervuo} \cite{Fagerlund} . The energy  based
 segmentation method is highly influenced by background noise and will
-deteriorate  where bird calls have low energy in comparison to the background. A
+deteriorate  where birdcalls have low energy in comparison to the background. A
 KL-divergence based segmentation method is proposed in \cite{Lakshmi}.
 KL-divergence between normalized power spectral density of a frame and uniform
-distribution is computed. The more KL-divergence corresponds to less entropy and
+distribution is computed. Higher KL-divergence corresponds to less entropy and
 vice-versa. Local minima of KL-divergence act as change points for bird
 vocalizations. In \cite{Neal}, time-frequency based segmentation using a random
 forest classifier is proposed to  segment the bird vocalizations from a noisy
@@ -134,7 +134,7 @@ The proposed entropy-based segmentation algorithm is described in section
 in section \ref{sec:eval}. This section also touches upon the topic of model
 order selection. Finally we conclude in section \ref{sec:conclusion}.
 
-\section{Utilising Fourier transform phase}
+\section{Utilising Fourier transform phase from all-pole models}
 \label{sec:gdReview}
 
 Commonly used features for processing speech and audio signals are based on the
@@ -160,7 +160,7 @@ the value of the denominator in equation \ref{eq:gdelayFormula} tends to zero,
 leading to spurious peaks which mask the formant structure
 \cite{hema},\cite{hemaSigProc1989},\cite{chirpGD}.  Several methods have been
 proposed in the literature to overcome the effects due to these artifacts
-\cite{modgdf}, \cite{productSpectrum}, \cite{chirpGD}. Another technique to
+\cite{modgdf}, \cite{chirpGD}, \cite{productSpectrum}. Another technique to
 overcome this difficulty is to model the vocal tract as an all-pole filter,
 hence avoiding the zeros altogether. Such a technique derived using linear
 prediction (LP) analysis was used in the detection of formants in human speech
@@ -170,10 +170,10 @@ were used in speech \cite{drugman} and speaker recognition \cite{padman}.
 
 The vocal tract is represented in the LP model as
 \begin{equation}
-H(\omega) = \frac{G}{1-\sum_{k=1}^{P} a(k) e^{-j \omega k}},
+H(\omega) = \frac{G}{1-\sum_{k=1}^{p} a(k) e^{-j \omega k}},
 \label{eq:lpModel}
 \end{equation}
-where the predictor model order is $P$, $G$ represents the gain and $a(k)$ are
+where the predictor model order is $p$, $G$ represents the gain and $a(k)$ are
 the predictor coefficients\cite{makhoul}.
 The filter represented by $H(\omega)$ is an all-pole filter, and its group delay
 function does not suffer from the artifacts mentioned earlier. The all-pole 
@@ -248,7 +248,8 @@ using the expression
 \label{eq:2}
  h_{k}=-\sum_{n=kT+1}^{kT+w}\sum_{f=f_{\min}}^{f_{\max}} \uptau_N(n,f) \ln \uptau_N(n,f),
 \end{equation}
-where $T$ is the time-frequency window shift and $\uptau_N(n,f)$ is normalized
+where $h_k$ is the entropy of the $k$th time-frequency window, $T$ is the window shift, 
+and $\uptau_N(n,f)$ is the normalized
 APGDF. $\uptau_N(n,f)$ is estimated using the expression 
 \begin{equation}
 \label{eq:3}
@@ -365,13 +366,13 @@ performance of both techniques. True positive rate (TPR) and false alarm rate
 (FAR) are calculated as:
 
 \begin{equation}
-\text{TPR} (\%)=\frac{\text{Correctly Classified Call Frames}}
-{\text{Total Call Frames}} \times 100 
+\text{TPR} (\%)=\frac{\text{Num. correctly classified call frames}}
+{\text{Num. call frames}} \times 100 
 \end{equation}
 
 \begin{equation}
-\text{FAR} (\%)=\frac{\text{Wrongly Classified Call Frames}}
-{\text{Total Background Frames}} \times 100 
+\text{FAR} (\%)=\frac{\text{Num. background frames classified as call frames}}
+{\text{Num. background frames}} \times 100 
 \end{equation}
 
 Figures \ref{fig:ROCdata1} and  \ref{fig:ROCdata2} depict ROC curves comparing
@@ -409,7 +410,7 @@ To correctly model the all-pole filter while estimating the APGDF, one requires
 to know the optimum number of poles to be used. In \cite{makhoul}, the Akaike
 information criterion (AIC) is used to determine the optimal model order for the
 LP filter. Assuming a Gaussian probability distribution for the signal, the
-criterion approximated as
+criterion is approximated as
 
 \begin{equation}
 I(p)=\log V_p+\frac{2p}{N_e}. 
@@ -429,7 +430,7 @@ practice, a model order between 5 and 10 is well suited for this species.  To
 investigate if this is species specific, a similar study is performed for four
 species from four different families. These are: Indian nightjar
 (\textit{Caprimulgus asiaticu}) from the family Caprimulgidae, emerald dove
-(\textit{Chalcophaps indica}) from the family Columbidae, grey- headed canary
+(\textit{Chalcophaps indica}) from the family Columbidae, grey-headed canary
 flycatcher (\textit{Culicicapa ceylonensis}) from the family Stenostiridae and
 sarus crane (\textit{Grus antigone}) from the family Gruidae.  The model order
 versus AIC plots given in figure \ref{fig:species_4} also indicate that the same
